@@ -1,0 +1,1 @@
+/bin/c++    -rdynamic CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.o  -o add_dict_table_from_file  -Wl,-rpath,/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/utils_lib ../utils_lib/libmaria_op.so -lmariadbclient ../utils_lib/libcrypt_string.a 

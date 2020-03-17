@@ -1,0 +1,2 @@
+/bin/ar qc libparse_url.a  CMakeFiles/parse_url.dir/parse_url.cc.o
+/bin/ranlib libparse_url.a

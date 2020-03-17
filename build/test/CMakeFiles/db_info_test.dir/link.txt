@@ -1,0 +1,1 @@
+/bin/c++    -rdynamic CMakeFiles/db_info_test.dir/db_info.cc.o  -o db_info_test  -lcppunit 

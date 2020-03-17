@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.16)
+project(amigao)
+include_directories(src)
+enable_testing()
+add_subdirectory(manager manager_bin)
+add_subdirectory(src bin)
+add_subdirectory(src/utils utils_lib)
+add_subdirectory(test)

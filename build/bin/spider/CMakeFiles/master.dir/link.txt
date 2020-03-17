@@ -1,0 +1,1 @@
+/bin/c++    -rdynamic CMakeFiles/master.dir/master.cc.o  -o master  -Wl,-rpath,/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/utils_lib ../../utils_lib/libformat_url.a ../../utils_lib/libmaria_op.so -lpthread ../../utils_lib/libcrypt_string.a -lmariadbclient 

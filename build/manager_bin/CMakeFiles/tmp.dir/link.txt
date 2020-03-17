@@ -1,0 +1,1 @@
+/bin/c++    -rdynamic CMakeFiles/tmp.dir/tmp.cc.o  -o tmp  -Wl,-rpath,/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/utils_lib ../utils_lib/libmaria_op.so -lmariadbclient ../utils_lib/libcrypt_string.a ../utils_lib/libcrypt_string.a 

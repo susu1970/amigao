@@ -1,0 +1,62 @@
+#+begin_src plantuml :file ./uml_out/db_pool_class_diagram.png
+  interface DBPoolInterface{
+    #PoolList*unused_pool;
+    #PoolList*used_pool;
+--
+    +DBPoolInterface(std::string db_conf_path_)
+    +virtual void* get_connection()=0;
+    +virtual void recycle_connection((void*)connection)=0;
+    +virtual void add_connection(int add_numbers)=0;
+    +virtual void delete_connection(int delete_numbers)=0;
+    +virtual ~DBPoolInterface()
+    }
+  class DBInfo{
+    #int MAX_CONN=100,MAX_IDLE=30,MIN_IDLE=3,SLEEP=2;
+    #std::string HOST="",USER="",PASSWD="",DB_NAME="",UNIX_SOCKET="";
+    #unsigned long CLIENT_FLAG=0;
+    #unsigned int PORT=3306;
+--
+    #void set_db_conf_path(std::string db_conf_path_)
+    +DBInfo(int MAX_CONN_,int MAX_IDLE_,int MIN_IDLE_,int SLEEP_,
+	   std::string HOST_,std::string USER_,
+	   std::string PASSWD_,std::string DB_NAME_,
+	   std::string UNIX_SOCKET_,
+	   unsigned long CLIENT_FLAG_,
+	   unsigned int PORT_)
+    +DBInfo(std::string db_conf_path_)
+  }
+    class DBPoolNode{
+      friend DBPoolList
+--
+      -void *connection
+      -DBPoolNode*next=nullptr
+--
+      -explicit DBPoolNode(void*conn):connection(conn),next(nullptr)
+      -~DBPoolNode()
+    }
+  class DBPoolList{
+    -int node_numbers=0;
+    -DBPoolNode*next=nullptr;
+--
+    -void move_node(DBPoolList*dest,void*connection)
+    +bool if_exist(void *connection)
+    +bool if_exist(DBPoolNode*db_pool_node)
+    +void add_node(DBPoolNode*db_pool_node)
+    +void add_node(void *connection)
+    +int get_node_numbers()
+    +void delete_node(void*connection)
+    +void delete_node(DBPoolNode*db_pool_node)
+    +void delete_node()
+    +void*get_connection()
+    +void*pop_connection2(DBPoolList*dest)
+    +void*pop_connection2(DBPoolList*dest,void*connection)
+    ~DBPoolList()
+  }
+DBPoolInterface -u-|> DBInfo
+DBPoolInterface *-u-> DBPoolList
+DBPoolList *--> DBPoolNode
+
+#+end_src
+
+#+RESULTS:
+[[file:./uml_out/db_pool_class_diagram.png]]

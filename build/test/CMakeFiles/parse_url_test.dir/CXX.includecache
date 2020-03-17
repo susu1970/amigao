@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ydssbbnc/study/hwork/graduationPrj/amigao/test/parse_url.cc
+string
+-
+cppunit/TestCase.h
+-
+cppunit/TestRunner.h
+-
+cppunit/TestResult.h
+-
+cppunit/TestResultCollector.h
+-
+cppunit/TextOutputter.h
+-
+queue
+-
+

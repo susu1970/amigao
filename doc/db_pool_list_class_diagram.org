@@ -1,0 +1,28 @@
+#+begin_src plantuml :file ./uml_out/db_pool_list_class_diagram.png
+    class DBPoolNode{
+      friend DBPoolList
+--
+      -DBPoolNode*next
+      -void *connection
+--
+      -explicit DBPoolNode(void*conn)
+      +~DBPoolNode()
+    }
+  class DBPoolList{
+    -int node_numbers
+    -DBPoolNode*next
+--
+    +int get_node_numbers()
+    +void add_node(void *connection)
+    +void move_node(DBPoolList*dest,void*connection)
+    +void delete_node(void*connection)
+    +void delete_node()
+    +void*get_connection()
+    +void*pop_connection2(DBPoolList*dest)
+    +~DBPoolList()
+  }
+DBPoolList *-u-> DBPoolNode
+#+end_src
+
+#+RESULTS:
+[[file:./uml_out/db_pool_list_class_diagram.png]]

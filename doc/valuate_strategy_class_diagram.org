@@ -1,0 +1,19 @@
+#+begin_src plantuml :file ./uml_out/valuate_strategy_class_diagram.png
+  interface ValuateStrategyInterface{
+    #DBOperationInterface*db_op
+--
+    +void add_db_operation(DBOperationInterface*db_op_)
+    +virtual void handle(std::string url,
+			std::string &title,
+			std::string &contents,
+			std::string &html)=0;
+    +virtual ~ValuateStrategyInterface()
+  }
+  interface DBOperationInterface{
+  
+  }
+ValuateStrategyInterface o-u-> DBOperationInterface
+#+end_src
+
+#+RESULTS:
+[[file:./uml_out/valuate_strategy_class_diagram.png]]

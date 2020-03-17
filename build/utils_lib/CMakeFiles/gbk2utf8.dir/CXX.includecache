@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/utils/gbk2utf8.cc
+stdlib.h
+-
+string.h
+-
+iconv.h
+-
+string
+-
+

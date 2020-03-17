@@ -1,0 +1,17 @@
+#+begin_src plantuml :file ./uml_out/pqueue_class_diagram.png
+@startuml
+  class PQueueNode{
+    +unsigned long weight
+    +std::string address
+    +std::string title
+    +std::string content
+    +std::string html
+--
+    +PQueueNode(unsigned long weight,std::string address,std::string title,std::string content,std::string html_)
+    +bool operator<(PQueueNode&b)
+  }
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:./uml_out/pqueue_class_diagram.png]]

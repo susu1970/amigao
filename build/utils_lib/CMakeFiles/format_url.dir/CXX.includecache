@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/values.h
+
+/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/utils/format_url.cc
+string
+-
+values.h
+/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/utils/values.h
+

@@ -1,0 +1,2 @@
+/bin/ar qc libformat_url.a  CMakeFiles/format_url.dir/format_url.cc.o
+/bin/ranlib libformat_url.a

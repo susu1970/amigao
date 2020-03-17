@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/utils/ini_parser.hpp
+string
+-
+map
+-
+fstream
+-
+fcntl.h
+-
+iostream
+-
+queue
+-
+
+/home/ydssbbnc/study/hwork/graduationPrj/amigao/test/ini_parser.cc
+cppunit/TestCase.h
+-
+cppunit/TestRunner.h
+-
+cppunit/TestResult.h
+-
+cppunit/TestResultCollector.h
+-
+cppunit/TextOutputter.h
+-
+utils/ini_parser.hpp
+/home/ydssbbnc/study/hwork/graduationPrj/amigao/test/utils/ini_parser.hpp
+

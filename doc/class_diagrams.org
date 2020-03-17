@@ -1,0 +1,21 @@
+#+begin_src plantuml :file ./uml_out/class_diagrams.png
+
+skinparam classAttributeIconSize 0
+class IniParser{
+  -std::string ini_file_path
+  -std::string context
+  -std::map<std::string,std::string> result
+--
+  +IniParser()
+  +IniParser(std::string)
+  +void init_from_file(std::string)
+  +void init_from_string(std::string)
+  +void parse()
+  +void parse(const std::string)
+  +std::map<std::string,std::string>get_result()
+  +std::string get_value(const std::string)
+}
+#+end_src
+
+#+RESULTS:
+[[file:./uml_out/class_diagrams.png]]

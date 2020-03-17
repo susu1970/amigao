@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/values.h
+
+/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/utils/parse_html.cc
+gumbo.h
+-
+string
+-
+set
+-
+values.h
+/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/utils/values.h
+

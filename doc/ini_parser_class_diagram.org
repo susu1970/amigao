@@ -1,0 +1,23 @@
+#+begin_src plantuml :file ./uml_out/ini_parser_class_diagram.png
+@startuml
+class IniParser{
+--data member--
+  -std::string   ini_file_path
+  -std::string   context
+  -std::map<std::string,std::string>    result
+--data function--
+  +IniParser(std::string   ini_file_path_)
+  +IniParser()
+  +void init_from_file(std::string   ini_file_path_)
+  +void init_from_string(std::string   ini_string_)
+  +void parse()
+  +void parse(const std::string   ini_string_)
+  +std::map<std::string,std::string>    get_result()
+  +std::string get_value(const   std::string key_)
+}
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:./uml_out/ini_parser_class_diagram.png]]
+

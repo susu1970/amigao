@@ -1,0 +1,12 @@
+#+begin_src plantuml :file ./uml_out/cppjieba_use_sequence.png
+@startuml
+(*)-->[将词典路径传给构造函数]初始化
+-->[调用\nCutForSearch(string source,vector<string>&destination,true)]开始分词
+-d->[取出结果向量destination]结束分词
+-d->(*)
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:./uml_out/cppjieba_use_sequence.png]]
+
