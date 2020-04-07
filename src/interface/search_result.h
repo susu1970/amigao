@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Author: susu1970@yandex.com 
+// Author: 758293230@qq.com
 //
 
 #ifndef AMIGAO_INTERFACE_SEARCH_RESULT_H_
@@ -22,15 +22,12 @@
 
 namespace amigao{
   class SearchResultInterface{
-
   public:
-    virtual std::string get_url()=0;
-    virtual std::string get_title()=0;
-    virtual std::string get_contents()=0;
-    virtual std::string get_html()=0;
-    virtual std::string pop_url()=0;
-    virtual std::string pop_html()=0;
-    virtual std::string pop_contents()=0;
+    virtual std::string get_url(size_t ith=0)=0;
+    virtual std::string get_title(size_t ith=0)=0;
+    virtual std::string get_contents(size_t ith=0)=0;
+    virtual size_t size()=0;
+    virtual std::string get_html(size_t ith=0)=0;
     virtual ~SearchResultInterface(){}
   };
 }

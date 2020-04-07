@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ydssbbnc/study/hwork/graduationPrj/amigao
+CMAKE_SOURCE_DIR = /home/ydssbbnc/do/document/source/prj/amigao
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ydssbbnc/study/hwork/graduationPrj/amigao/build
+CMAKE_BINARY_DIR = /home/ydssbbnc/do/document/source/prj/amigao/build
 
 # Include any dependencies generated for this target.
 include manager_bin/CMakeFiles/add_dict_table_from_file.dir/depend.make
@@ -59,16 +59,16 @@ include manager_bin/CMakeFiles/add_dict_table_from_file.dir/flags.make
 
 manager_bin/CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.o: manager_bin/CMakeFiles/add_dict_table_from_file.dir/flags.make
 manager_bin/CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.o: ../manager/add_dict_table_from_file.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object manager_bin/CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.o"
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/manager_bin && /bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.o -c /home/ydssbbnc/study/hwork/graduationPrj/amigao/manager/add_dict_table_from_file.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object manager_bin/CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.o"
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build/manager_bin && /bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.o -c /home/ydssbbnc/do/document/source/prj/amigao/manager/add_dict_table_from_file.cc
 
 manager_bin/CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.i"
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/manager_bin && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ydssbbnc/study/hwork/graduationPrj/amigao/manager/add_dict_table_from_file.cc > CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.i
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build/manager_bin && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ydssbbnc/do/document/source/prj/amigao/manager/add_dict_table_from_file.cc > CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.i
 
 manager_bin/CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.s"
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/manager_bin && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ydssbbnc/study/hwork/graduationPrj/amigao/manager/add_dict_table_from_file.cc -o CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.s
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build/manager_bin && /bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ydssbbnc/do/document/source/prj/amigao/manager/add_dict_table_from_file.cc -o CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.s
 
 # Object files for target add_dict_table_from_file
 add_dict_table_from_file_OBJECTS = \
@@ -79,11 +79,11 @@ add_dict_table_from_file_EXTERNAL_OBJECTS =
 
 manager_bin/add_dict_table_from_file: manager_bin/CMakeFiles/add_dict_table_from_file.dir/add_dict_table_from_file.cc.o
 manager_bin/add_dict_table_from_file: manager_bin/CMakeFiles/add_dict_table_from_file.dir/build.make
-manager_bin/add_dict_table_from_file: utils_lib/libmaria_op.so
+manager_bin/add_dict_table_from_file: utils_lib/libmaria_op.a
 manager_bin/add_dict_table_from_file: utils_lib/libcrypt_string.a
 manager_bin/add_dict_table_from_file: manager_bin/CMakeFiles/add_dict_table_from_file.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable add_dict_table_from_file"
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/manager_bin && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/add_dict_table_from_file.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable add_dict_table_from_file"
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build/manager_bin && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/add_dict_table_from_file.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 manager_bin/CMakeFiles/add_dict_table_from_file.dir/build: manager_bin/add_dict_table_from_file
@@ -91,10 +91,10 @@ manager_bin/CMakeFiles/add_dict_table_from_file.dir/build: manager_bin/add_dict_
 .PHONY : manager_bin/CMakeFiles/add_dict_table_from_file.dir/build
 
 manager_bin/CMakeFiles/add_dict_table_from_file.dir/clean:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/manager_bin && $(CMAKE_COMMAND) -P CMakeFiles/add_dict_table_from_file.dir/cmake_clean.cmake
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build/manager_bin && $(CMAKE_COMMAND) -P CMakeFiles/add_dict_table_from_file.dir/cmake_clean.cmake
 .PHONY : manager_bin/CMakeFiles/add_dict_table_from_file.dir/clean
 
 manager_bin/CMakeFiles/add_dict_table_from_file.dir/depend:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ydssbbnc/study/hwork/graduationPrj/amigao /home/ydssbbnc/study/hwork/graduationPrj/amigao/manager /home/ydssbbnc/study/hwork/graduationPrj/amigao/build /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/manager_bin /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/manager_bin/CMakeFiles/add_dict_table_from_file.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/ydssbbnc/do/document/source/prj/amigao /home/ydssbbnc/do/document/source/prj/amigao/manager /home/ydssbbnc/do/document/source/prj/amigao/build /home/ydssbbnc/do/document/source/prj/amigao/build/manager_bin /home/ydssbbnc/do/document/source/prj/amigao/build/manager_bin/CMakeFiles/add_dict_table_from_file.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : manager_bin/CMakeFiles/add_dict_table_from_file.dir/depend
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/ydssbbnc/study/hwork/graduationPrj/amigao
+# Install script for directory: /home/ydssbbnc/do/document/source/prj/amigao
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,10 +39,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/manager_bin/cmake_install.cmake")
-  include("/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/bin/cmake_install.cmake")
-  include("/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/utils_lib/cmake_install.cmake")
-  include("/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/test/cmake_install.cmake")
+  include("/home/ydssbbnc/do/document/source/prj/amigao/build/manager_bin/cmake_install.cmake")
+  include("/home/ydssbbnc/do/document/source/prj/amigao/build/bin/cmake_install.cmake")
+  include("/home/ydssbbnc/do/document/source/prj/amigao/build/utils_lib/cmake_install.cmake")
 
 endif()
 
@@ -54,5 +53,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/ydssbbnc/do/document/source/prj/amigao/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

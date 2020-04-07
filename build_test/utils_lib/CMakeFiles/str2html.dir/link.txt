@@ -1,0 +1,2 @@
+/bin/ar qc libstr2html.a  CMakeFiles/str2html.dir/str2html.cc.o
+/bin/ranlib libstr2html.a

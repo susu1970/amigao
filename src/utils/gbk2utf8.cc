@@ -1,6 +1,6 @@
 //referenced from:
 // https://blog.csdn.net/weixin_38595946/article/details/103128955?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
-
+// Author: 758293230@qq.com
 #include <stdlib.h>
 #include <string.h>
 #include <iconv.h> 

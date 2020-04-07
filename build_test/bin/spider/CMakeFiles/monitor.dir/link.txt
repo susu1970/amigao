@@ -1,0 +1,1 @@
+/bin/c++    -rdynamic CMakeFiles/monitor.dir/monitor.cc.o  -o monitor  -lpthread 

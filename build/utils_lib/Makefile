@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ydssbbnc/study/hwork/graduationPrj/amigao
+CMAKE_SOURCE_DIR = /home/ydssbbnc/do/document/source/prj/amigao
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ydssbbnc/study/hwork/graduationPrj/amigao/build
+CMAKE_BINARY_DIR = /home/ydssbbnc/do/document/source/prj/amigao/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,27 +78,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # The main all target
 all: cmake_check_build_system
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/utils_lib/CMakeFiles/progress.marks
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles 0
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles /home/ydssbbnc/do/document/source/prj/amigao/build/utils_lib/CMakeFiles/progress.marks
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/clean
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/clean
 .PHONY : clean
 
 # The main clean target
@@ -108,22 +97,37 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/preinstall
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/preinstall
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
+utils_lib/CMakeFiles/str2sum.dir/rule:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/str2sum.dir/rule
+.PHONY : utils_lib/CMakeFiles/str2sum.dir/rule
+
+# Convenience name for target.
+str2sum: utils_lib/CMakeFiles/str2sum.dir/rule
+
+.PHONY : str2sum
+
+# fast build rule for target.
+str2sum/fast:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/build
+.PHONY : str2sum/fast
+
+# Convenience name for target.
 utils_lib/CMakeFiles/maria_op.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/maria_op.dir/rule
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/maria_op.dir/rule
 .PHONY : utils_lib/CMakeFiles/maria_op.dir/rule
 
 # Convenience name for target.
@@ -133,12 +137,12 @@ maria_op: utils_lib/CMakeFiles/maria_op.dir/rule
 
 # fast build rule for target.
 maria_op/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/maria_op.dir/build.make utils_lib/CMakeFiles/maria_op.dir/build
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/maria_op.dir/build.make utils_lib/CMakeFiles/maria_op.dir/build
 .PHONY : maria_op/fast
 
 # Convenience name for target.
 utils_lib/CMakeFiles/crypt_string.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/crypt_string.dir/rule
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/crypt_string.dir/rule
 .PHONY : utils_lib/CMakeFiles/crypt_string.dir/rule
 
 # Convenience name for target.
@@ -148,12 +152,12 @@ crypt_string: utils_lib/CMakeFiles/crypt_string.dir/rule
 
 # fast build rule for target.
 crypt_string/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/crypt_string.dir/build.make utils_lib/CMakeFiles/crypt_string.dir/build
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/crypt_string.dir/build.make utils_lib/CMakeFiles/crypt_string.dir/build
 .PHONY : crypt_string/fast
 
 # Convenience name for target.
 utils_lib/CMakeFiles/gbk2utf8.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/gbk2utf8.dir/rule
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/gbk2utf8.dir/rule
 .PHONY : utils_lib/CMakeFiles/gbk2utf8.dir/rule
 
 # Convenience name for target.
@@ -163,12 +167,12 @@ gbk2utf8: utils_lib/CMakeFiles/gbk2utf8.dir/rule
 
 # fast build rule for target.
 gbk2utf8/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/gbk2utf8.dir/build.make utils_lib/CMakeFiles/gbk2utf8.dir/build
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/gbk2utf8.dir/build.make utils_lib/CMakeFiles/gbk2utf8.dir/build
 .PHONY : gbk2utf8/fast
 
 # Convenience name for target.
 utils_lib/CMakeFiles/parse_url.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/parse_url.dir/rule
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/parse_url.dir/rule
 .PHONY : utils_lib/CMakeFiles/parse_url.dir/rule
 
 # Convenience name for target.
@@ -178,12 +182,27 @@ parse_url: utils_lib/CMakeFiles/parse_url.dir/rule
 
 # fast build rule for target.
 parse_url/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_url.dir/build.make utils_lib/CMakeFiles/parse_url.dir/build
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_url.dir/build.make utils_lib/CMakeFiles/parse_url.dir/build
 .PHONY : parse_url/fast
 
 # Convenience name for target.
+utils_lib/CMakeFiles/escape_url.dir/rule:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/escape_url.dir/rule
+.PHONY : utils_lib/CMakeFiles/escape_url.dir/rule
+
+# Convenience name for target.
+escape_url: utils_lib/CMakeFiles/escape_url.dir/rule
+
+.PHONY : escape_url
+
+# fast build rule for target.
+escape_url/fast:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/escape_url.dir/build.make utils_lib/CMakeFiles/escape_url.dir/build
+.PHONY : escape_url/fast
+
+# Convenience name for target.
 utils_lib/CMakeFiles/parse_html.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/parse_html.dir/rule
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/parse_html.dir/rule
 .PHONY : utils_lib/CMakeFiles/parse_html.dir/rule
 
 # Convenience name for target.
@@ -193,12 +212,12 @@ parse_html: utils_lib/CMakeFiles/parse_html.dir/rule
 
 # fast build rule for target.
 parse_html/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_html.dir/build.make utils_lib/CMakeFiles/parse_html.dir/build
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_html.dir/build.make utils_lib/CMakeFiles/parse_html.dir/build
 .PHONY : parse_html/fast
 
 # Convenience name for target.
 utils_lib/CMakeFiles/format_url.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/format_url.dir/rule
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/format_url.dir/rule
 .PHONY : utils_lib/CMakeFiles/format_url.dir/rule
 
 # Convenience name for target.
@@ -208,7 +227,7 @@ format_url: utils_lib/CMakeFiles/format_url.dir/rule
 
 # fast build rule for target.
 format_url/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/build
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/build
 .PHONY : format_url/fast
 
 crypt_string.o: crypt_string.cc.o
@@ -217,7 +236,7 @@ crypt_string.o: crypt_string.cc.o
 
 # target to build an object file
 crypt_string.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/crypt_string.dir/build.make utils_lib/CMakeFiles/crypt_string.dir/crypt_string.cc.o
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/crypt_string.dir/build.make utils_lib/CMakeFiles/crypt_string.dir/crypt_string.cc.o
 .PHONY : crypt_string.cc.o
 
 crypt_string.i: crypt_string.cc.i
@@ -226,7 +245,7 @@ crypt_string.i: crypt_string.cc.i
 
 # target to preprocess a source file
 crypt_string.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/crypt_string.dir/build.make utils_lib/CMakeFiles/crypt_string.dir/crypt_string.cc.i
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/crypt_string.dir/build.make utils_lib/CMakeFiles/crypt_string.dir/crypt_string.cc.i
 .PHONY : crypt_string.cc.i
 
 crypt_string.s: crypt_string.cc.s
@@ -235,8 +254,35 @@ crypt_string.s: crypt_string.cc.s
 
 # target to generate assembly for a file
 crypt_string.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/crypt_string.dir/build.make utils_lib/CMakeFiles/crypt_string.dir/crypt_string.cc.s
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/crypt_string.dir/build.make utils_lib/CMakeFiles/crypt_string.dir/crypt_string.cc.s
 .PHONY : crypt_string.cc.s
+
+escape_url.o: escape_url.cc.o
+
+.PHONY : escape_url.o
+
+# target to build an object file
+escape_url.cc.o:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/escape_url.dir/build.make utils_lib/CMakeFiles/escape_url.dir/escape_url.cc.o
+.PHONY : escape_url.cc.o
+
+escape_url.i: escape_url.cc.i
+
+.PHONY : escape_url.i
+
+# target to preprocess a source file
+escape_url.cc.i:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/escape_url.dir/build.make utils_lib/CMakeFiles/escape_url.dir/escape_url.cc.i
+.PHONY : escape_url.cc.i
+
+escape_url.s: escape_url.cc.s
+
+.PHONY : escape_url.s
+
+# target to generate assembly for a file
+escape_url.cc.s:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/escape_url.dir/build.make utils_lib/CMakeFiles/escape_url.dir/escape_url.cc.s
+.PHONY : escape_url.cc.s
 
 format_url.o: format_url.cc.o
 
@@ -244,7 +290,7 @@ format_url.o: format_url.cc.o
 
 # target to build an object file
 format_url.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/format_url.cc.o
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/format_url.cc.o
 .PHONY : format_url.cc.o
 
 format_url.i: format_url.cc.i
@@ -253,7 +299,7 @@ format_url.i: format_url.cc.i
 
 # target to preprocess a source file
 format_url.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/format_url.cc.i
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/format_url.cc.i
 .PHONY : format_url.cc.i
 
 format_url.s: format_url.cc.s
@@ -262,7 +308,7 @@ format_url.s: format_url.cc.s
 
 # target to generate assembly for a file
 format_url.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/format_url.cc.s
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/format_url.cc.s
 .PHONY : format_url.cc.s
 
 gbk2utf8.o: gbk2utf8.cc.o
@@ -271,7 +317,7 @@ gbk2utf8.o: gbk2utf8.cc.o
 
 # target to build an object file
 gbk2utf8.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/gbk2utf8.dir/build.make utils_lib/CMakeFiles/gbk2utf8.dir/gbk2utf8.cc.o
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/gbk2utf8.dir/build.make utils_lib/CMakeFiles/gbk2utf8.dir/gbk2utf8.cc.o
 .PHONY : gbk2utf8.cc.o
 
 gbk2utf8.i: gbk2utf8.cc.i
@@ -280,7 +326,7 @@ gbk2utf8.i: gbk2utf8.cc.i
 
 # target to preprocess a source file
 gbk2utf8.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/gbk2utf8.dir/build.make utils_lib/CMakeFiles/gbk2utf8.dir/gbk2utf8.cc.i
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/gbk2utf8.dir/build.make utils_lib/CMakeFiles/gbk2utf8.dir/gbk2utf8.cc.i
 .PHONY : gbk2utf8.cc.i
 
 gbk2utf8.s: gbk2utf8.cc.s
@@ -289,7 +335,7 @@ gbk2utf8.s: gbk2utf8.cc.s
 
 # target to generate assembly for a file
 gbk2utf8.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/gbk2utf8.dir/build.make utils_lib/CMakeFiles/gbk2utf8.dir/gbk2utf8.cc.s
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/gbk2utf8.dir/build.make utils_lib/CMakeFiles/gbk2utf8.dir/gbk2utf8.cc.s
 .PHONY : gbk2utf8.cc.s
 
 maria_op.o: maria_op.cc.o
@@ -298,7 +344,7 @@ maria_op.o: maria_op.cc.o
 
 # target to build an object file
 maria_op.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/maria_op.dir/build.make utils_lib/CMakeFiles/maria_op.dir/maria_op.cc.o
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/maria_op.dir/build.make utils_lib/CMakeFiles/maria_op.dir/maria_op.cc.o
 .PHONY : maria_op.cc.o
 
 maria_op.i: maria_op.cc.i
@@ -307,7 +353,7 @@ maria_op.i: maria_op.cc.i
 
 # target to preprocess a source file
 maria_op.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/maria_op.dir/build.make utils_lib/CMakeFiles/maria_op.dir/maria_op.cc.i
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/maria_op.dir/build.make utils_lib/CMakeFiles/maria_op.dir/maria_op.cc.i
 .PHONY : maria_op.cc.i
 
 maria_op.s: maria_op.cc.s
@@ -316,7 +362,7 @@ maria_op.s: maria_op.cc.s
 
 # target to generate assembly for a file
 maria_op.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/maria_op.dir/build.make utils_lib/CMakeFiles/maria_op.dir/maria_op.cc.s
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/maria_op.dir/build.make utils_lib/CMakeFiles/maria_op.dir/maria_op.cc.s
 .PHONY : maria_op.cc.s
 
 parse_html.o: parse_html.cc.o
@@ -325,7 +371,7 @@ parse_html.o: parse_html.cc.o
 
 # target to build an object file
 parse_html.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_html.dir/build.make utils_lib/CMakeFiles/parse_html.dir/parse_html.cc.o
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_html.dir/build.make utils_lib/CMakeFiles/parse_html.dir/parse_html.cc.o
 .PHONY : parse_html.cc.o
 
 parse_html.i: parse_html.cc.i
@@ -334,7 +380,7 @@ parse_html.i: parse_html.cc.i
 
 # target to preprocess a source file
 parse_html.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_html.dir/build.make utils_lib/CMakeFiles/parse_html.dir/parse_html.cc.i
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_html.dir/build.make utils_lib/CMakeFiles/parse_html.dir/parse_html.cc.i
 .PHONY : parse_html.cc.i
 
 parse_html.s: parse_html.cc.s
@@ -343,7 +389,7 @@ parse_html.s: parse_html.cc.s
 
 # target to generate assembly for a file
 parse_html.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_html.dir/build.make utils_lib/CMakeFiles/parse_html.dir/parse_html.cc.s
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_html.dir/build.make utils_lib/CMakeFiles/parse_html.dir/parse_html.cc.s
 .PHONY : parse_html.cc.s
 
 parse_url.o: parse_url.cc.o
@@ -352,7 +398,7 @@ parse_url.o: parse_url.cc.o
 
 # target to build an object file
 parse_url.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_url.dir/build.make utils_lib/CMakeFiles/parse_url.dir/parse_url.cc.o
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_url.dir/build.make utils_lib/CMakeFiles/parse_url.dir/parse_url.cc.o
 .PHONY : parse_url.cc.o
 
 parse_url.i: parse_url.cc.i
@@ -361,7 +407,7 @@ parse_url.i: parse_url.cc.i
 
 # target to preprocess a source file
 parse_url.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_url.dir/build.make utils_lib/CMakeFiles/parse_url.dir/parse_url.cc.i
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_url.dir/build.make utils_lib/CMakeFiles/parse_url.dir/parse_url.cc.i
 .PHONY : parse_url.cc.i
 
 parse_url.s: parse_url.cc.s
@@ -370,8 +416,35 @@ parse_url.s: parse_url.cc.s
 
 # target to generate assembly for a file
 parse_url.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_url.dir/build.make utils_lib/CMakeFiles/parse_url.dir/parse_url.cc.s
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_url.dir/build.make utils_lib/CMakeFiles/parse_url.dir/parse_url.cc.s
 .PHONY : parse_url.cc.s
+
+str2sum.o: str2sum.cc.o
+
+.PHONY : str2sum.o
+
+# target to build an object file
+str2sum.cc.o:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/str2sum.cc.o
+.PHONY : str2sum.cc.o
+
+str2sum.i: str2sum.cc.i
+
+.PHONY : str2sum.i
+
+# target to preprocess a source file
+str2sum.cc.i:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/str2sum.cc.i
+.PHONY : str2sum.cc.i
+
+str2sum.s: str2sum.cc.s
+
+.PHONY : str2sum.s
+
+# target to generate assembly for a file
+str2sum.cc.s:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/str2sum.cc.s
+.PHONY : str2sum.cc.s
 
 # Help Target
 help:
@@ -380,17 +453,21 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... str2sum"
 	@echo "... maria_op"
 	@echo "... crypt_string"
 	@echo "... gbk2utf8"
 	@echo "... parse_url"
+	@echo "... escape_url"
 	@echo "... edit_cache"
-	@echo "... test"
 	@echo "... parse_html"
 	@echo "... format_url"
 	@echo "... crypt_string.o"
 	@echo "... crypt_string.i"
 	@echo "... crypt_string.s"
+	@echo "... escape_url.o"
+	@echo "... escape_url.i"
+	@echo "... escape_url.s"
 	@echo "... format_url.o"
 	@echo "... format_url.i"
 	@echo "... format_url.s"
@@ -406,6 +483,9 @@ help:
 	@echo "... parse_url.o"
 	@echo "... parse_url.i"
 	@echo "... parse_url.s"
+	@echo "... str2sum.o"
+	@echo "... str2sum.i"
+	@echo "... str2sum.s"
 .PHONY : help
 
 
@@ -417,6 +497,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

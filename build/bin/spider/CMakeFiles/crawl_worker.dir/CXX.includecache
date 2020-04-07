@@ -13,22 +13,20 @@ utils/ini_parser.hpp
 -
 
 ../src/db/db_pool_list.hpp
-stdlib.h
--
 
 ../src/db/sql_db_operation.hpp
+fstream
+-
+unordered_map
+-
+sstream
+-
+values.h
+../src/db/values.h
 interface/db_operation.h
 ../src/db/interface/db_operation.h
 db/sql_db_pool.hpp
 ../src/db/db/sql_db_pool.hpp
-fstream
--
-map
--
-algorithm
--
-sstream
--
 
 ../src/db/sql_db_pool.hpp
 mariadb/mysql.h
@@ -41,16 +39,16 @@ interface/db_pool.h
 ../src/db/interface/db_pool.h
 
 ../src/interface/db_operation.h
+unordered_map
+-
+unordered_set
+-
 interface/db_pool.h
 ../src/interface/interface/db_pool.h
 interface/search_strategy.h
 ../src/interface/interface/search_strategy.h
 interface/valuate_strategy.h
 ../src/interface/interface/valuate_strategy.h
-map
--
-set
--
 
 ../src/interface/db_pool.h
 string
@@ -62,22 +60,20 @@ db/db_pool_list.hpp
 db/db_info.hpp
 ../src/interface/db/db_info.hpp
 
-../src/interface/search_result.h
+../src/interface/search_strategy.h
 string
 -
-
-../src/interface/search_strategy.h
-interface/search_result.h
-../src/interface/interface/search_result.h
 
 ../src/interface/valuate_strategy.h
 string
 -
 
 ../src/strategy/reverse_valuate_strategy.hpp
+iostream
+-
 string
 -
-map
+unordered_map
 -
 vector
 -
@@ -361,7 +357,7 @@ StdExtension.hpp
 ../src/utils/ini_parser.hpp
 string
 -
-map
+unordered_map
 -
 fstream
 -
@@ -373,14 +369,16 @@ queue
 -
 
 ../src/values.h
+unistd.h
+-
 
-/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/spider/crawl_worker.cc
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/crawl_worker.cc
 db/sql_db_operation.hpp
-/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/spider/db/sql_db_operation.hpp
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/db/sql_db_operation.hpp
 strategy/reverse_valuate_strategy.hpp
-/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/spider/strategy/reverse_valuate_strategy.hpp
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/strategy/reverse_valuate_strategy.hpp
 shmctrl.h
-/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/spider/shmctrl.h
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/shmctrl.h
 sstream
 -
 netdb.h
@@ -413,14 +411,14 @@ sys/socket.h
 -
 gumbo.h
 -
-set
+unordered_set
 -
 regex
 -
 
-/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/spider/shmctrl.h
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/shmctrl.h
 values.h
-/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/spider/values.h
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/values.h
 pthread.h
 -
 

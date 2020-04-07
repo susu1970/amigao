@@ -1,1 +1,0 @@
-/bin/c++    -rdynamic CMakeFiles/sql_db_operation_test.dir/sql_db_operation.cc.o  -o sql_db_operation_test  -Wl,-rpath,/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/utils_lib ../utils_lib/libcrypt_string.a -lcppunit -lcppunit ../utils_lib/libmaria_op.so ../utils_lib/libcrypt_string.a ../utils_lib/libparse_url.a -lmariadbclient ../utils_lib/libformat_url.a 

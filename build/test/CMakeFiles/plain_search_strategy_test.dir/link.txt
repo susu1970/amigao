@@ -1,0 +1,1 @@
+/bin/c++    -rdynamic CMakeFiles/plain_search_strategy_test.dir/plain_search_strategy.cc.o  -o plain_search_strategy_test  -lcppunit -lmariadb_op ../utils_lib/libcrypt_string.a 

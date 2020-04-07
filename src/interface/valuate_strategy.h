@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Author: susu1970@yandex.com 
+// Author: 758293230@qq.com
 //
 
 #ifndef AMIGAO_INTERFACE_VALUATE_STRATEGY_H_
@@ -20,11 +20,12 @@
 
 #include<string>
 
+
 namespace amigao{
   class DBOperationInterface;
   class ValuateStrategyInterface{
   public:
-    virtual void handle(std::string url,
+    virtual void handle(std::string &url,
 			std::string &title,
 			std::string &contents,
 			std::string &html,

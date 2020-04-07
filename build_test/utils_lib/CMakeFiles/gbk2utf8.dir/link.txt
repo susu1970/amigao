@@ -1,0 +1,2 @@
+/bin/ar qc libgbk2utf8.a  CMakeFiles/gbk2utf8.dir/gbk2utf8.cc.o
+/bin/ranlib libgbk2utf8.a

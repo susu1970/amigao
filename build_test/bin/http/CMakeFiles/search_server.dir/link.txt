@@ -1,0 +1,1 @@
+/bin/c++    -rdynamic CMakeFiles/search_server.dir/search_server.cc.o  -o search_server  ../../utils_lib/libcrypt_string.a ../../utils_lib/libescape_url.a ../../utils_lib/libmaria_op.a -lfcgi ../../utils_lib/libstr2html.a -lmariadbclient 

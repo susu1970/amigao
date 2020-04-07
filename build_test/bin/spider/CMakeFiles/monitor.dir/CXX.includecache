@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/spider/shmctrl.h
+values.h
+../src/spider/values.h
+pthread.h
+-
+
+../src/values.h
+unistd.h
+-
+
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/monitor.cc
+spider/shmctrl.h
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/spider/shmctrl.h
+signal.h
+-
+syslog.h
+-
+cstring
+-
+string
+-
+pthread.h
+-
+sys/shm.h
+-
+iostream
+-
+fstream
+-
+

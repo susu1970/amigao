@@ -1,0 +1,20 @@
+Start testing: Apr 06 14:23 CST
+----------------------------------------------------------
+1/1 Testing: plain_search_strategy_test1
+1/1 Test: plain_search_strategy_test1
+Command: "/home/ydssbbnc/do/document/source/prj/amigao/build_test/test/plain_search_strategy_test" "~/conf/mariadb_info.ini" "~/do/document/src/prj/amigao/data/cppjieba_dict.ini"
+Directory: /home/ydssbbnc/do/document/source/prj/amigao/build_test/test
+"plain_search_strategy_test1" start time: Apr 06 14:23 CST
+Output:
+----------------------------------------------------------
+IniParser::init_from_file(std::string) ifstream open ~/do/document/src/prj/amigao/data/cppjieba_dict.ini error
+2020-04-06 14:23:30 /home/ydssbbnc/do/document/source/prj/amigao/src/utils/cppjieba/DictTrie.hpp:203 FATAL exp: [ifs.is_open()] false. open  failed.
+<end of output>
+Test time =   9.57 sec
+----------------------------------------------------------
+Test Failed.
+"plain_search_strategy_test1" end time: Apr 06 14:23 CST
+"plain_search_strategy_test1" time elapsed: 00:00:09
+----------------------------------------------------------
+
+End testing: Apr 06 14:23 CST

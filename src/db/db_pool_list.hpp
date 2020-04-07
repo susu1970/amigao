@@ -12,14 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Author: susu1970@yandex.com 
+// Author: 758293230@qq.com
 //
 
 #ifndef AMIGAO_DB_DB_POOL_LIST_H_
 #define AMIGAO_DB_DB_POOL_LIST_H_
-
-#include<stdlib.h>
-
 
 namespace amigao{
   //the datastructure for database pool
@@ -42,6 +39,7 @@ namespace amigao{
       if(!connection||dest->if_exist(connection)||!if_exist(connection))return;
       DBPoolNode *p=next,*q=nullptr;//work pointer
       for(;p&&p->connection!=connection;q=p,p=p->next);
+      if(!p)return;
       if(!q){
 	q=next;
 	next=next->next;
@@ -60,16 +58,14 @@ namespace amigao{
       if(!connection)return true;
       DBPoolNode* p=next;
       for(;p&&p->connection!=connection;p=p->next);
-      if(p)return true;
-      return false;
+      return p;
     }
     bool if_exist(DBPoolNode*db_pool_node){
       if(node_numbers==0)return false;
       if(!db_pool_node||if_exist(db_pool_node->connection))return true;
       DBPoolNode* p=next;
       for(;p&&p!=db_pool_node;p=p->next);
-      if(p)return true;
-      return false;
+      return p;
     }
     void add_node(DBPoolNode*db_pool_node){
       if(if_exist(db_pool_node)&&node_numbers>0)return;
@@ -88,9 +84,10 @@ namespace amigao{
       return node_numbers;
     }
     void delete_node(void*connection){
-      if(!if_exist(connection))return;
+      if(!if_exist(connection)||!connection)return;
       DBPoolNode*p=next,*q=nullptr;
       for(;p&&p->connection!=connection;q=p,p=p->next);
+      if(!p)return;
       if(!q){
 	q=next;
 	next=next->next;
@@ -105,9 +102,10 @@ namespace amigao{
       --node_numbers;
     }
     void delete_node(DBPoolNode*db_pool_node){
-      if(!if_exist(db_pool_node))return;
+      if(!if_exist(db_pool_node)||!db_pool_node)return;
       DBPoolNode*p=next,*q=nullptr;
       for(;p&&p!=db_pool_node;q=0,p=p->next);
+      if(!p)return;
       if(!q){
 	q=next;
 	next=next->next;

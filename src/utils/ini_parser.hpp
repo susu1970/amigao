@@ -12,14 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Author: susu1970@yandex.com 
+// Author: 758293230@qq.com
 //
 
 #ifndef AMIGAO_UTILS_INI_PARSER_H_
 #define AMIGAO_UTILS_INI_PARSER_H_
 
 #include<string>
-#include<map>
+#include<unordered_map>
 #include<fstream>
 #include<fcntl.h>
 #include<iostream>
@@ -29,7 +29,7 @@ namespace amigao{
   class IniParser{
     std::string ini_file_path="";
     std::string context="";
-    std::map<std::string,std::string>result;
+    std::unordered_map<std::string,std::string>result;
   public:
     //specify an xxx.ini file to initialize IniParser
     IniParser(std::string ini_file_path_){
@@ -115,7 +115,7 @@ namespace amigao{
 	}
       }
     }
-    std::map<std::string,std::string>get_result(){
+    std::unordered_map<std::string,std::string>get_result(){
       return result;
     }
     std::string get_value(std::string key_){

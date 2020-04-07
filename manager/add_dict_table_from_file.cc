@@ -1,11 +1,10 @@
 #include"db/sql_db_operation.hpp"
 #include<string>
-#include<vector>
-#include<set>
-#include<dirent.h>
 #include<cstring>
 #include<iostream>
+
 using namespace std;
+
 int main(int argc,char**argv){
   if(argc!=4)
     cerr<<"usage: <"<<argv[0]<<"> <db conf path> <dict name> <dict file>"<<endl,exit(1);

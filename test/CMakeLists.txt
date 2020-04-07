@@ -1,3 +1,13 @@
+add_executable(plain_search_strategy_test plain_search_strategy.cc)
+
+add_test(plain_search_strategy_test1 plain_search_strategy_test ~/conf/mariadb_info.ini ~/do/document/src/prj/amigao/data/cppjieba_dict.ini)
+
+target_link_libraries(plain_search_strategy_test
+  cppunit maria_op crypt_string 
+)
+
+
+#[[
 add_executable(ini_parser_test ini_parser.cc)
 add_executable(format_url_test format_url.cc)
 add_executable(db_info_test db_info.cc)
@@ -42,6 +52,4 @@ target_link_libraries(db_info_test
 target_link_libraries(ini_parser_test
   cppunit 
   )
-
-
-
+]]

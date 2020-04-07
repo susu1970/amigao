@@ -12,27 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Author: susu1970@yandex.com 
+// Author: 758293230@qq.com
 //
 
 #ifndef AMIGAO_INTERFACE_DB_OPERATION_H_
 #define AMIGAO_INTERFACE_DB_OPERATION_H_
 
+#include<unordered_map>
+#include<unordered_set>
+
 #include"interface/db_pool.h"
 #include"interface/search_strategy.h"
 #include"interface/valuate_strategy.h"
 
-#include<map>
-#include<set>
-
 namespace amigao{
   class DBOperationInterface{
-  public:
+  protected:
     DBPoolInterface*db_pool;
-    long MAX_INSERT=1000;
-    SearchResultInterface*search_sentence(std::string search_sentence,SearchStrategyInterface*search_strategy){
-      search_strategy->handle(search_sentence,this);
-      return search_strategy->get_search_result();
+    long MAX_INSERT;
+  public:
+    long get_MAX_INSERT(){
+      return MAX_INSERT;
+    }
+    void* get_db(){
+      return (db_pool->get_connection());
+    }
+    void recycle_db(void* conn){
+      db_pool->recycle_connection((void*)conn);
+    }
+    void search_sentence(std::string sentence,SearchStrategyInterface*search_strategy,void*search_result,short start_page=1,short results_per_page=10){
+      search_strategy->handle(sentence,search_result,this,start_page,results_per_page);
     }
     void valuate_page(std::string url,
 		      std::string &title,
@@ -42,11 +51,11 @@ namespace amigao{
       valuate_strategy->handle(url,title,contents,html,this);
     }
     virtual void add_dict_table(std::string dict_name,
-				std::map<std::string,std::string>*word_no)=0;
+				std::unordered_map<std::string,std::string>*word_no)=0;
     virtual void add_dict_table(std::string dict_name,
 				std::string dict_file_path)=0;
     virtual void add_dict_table(std::string dict_name,
-				std::set<std::string>*word_set)=0;
+				std::unordered_set<std::string>*word_unordered_set)=0;
     virtual bool add_dict_table(std::string dict_name)=0;
     virtual void op_website_nice(std::string url,
 				 std::string nice)=0;

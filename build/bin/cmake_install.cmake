@@ -1,4 +1,4 @@
-# Install script for directory: /home/ydssbbnc/study/hwork/graduationPrj/amigao/src
+# Install script for directory: /home/ydssbbnc/do/document/source/prj/amigao/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,8 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/bin/spider/cmake_install.cmake")
+  include("/home/ydssbbnc/do/document/source/prj/amigao/build/bin/spider/cmake_install.cmake")
+  include("/home/ydssbbnc/do/document/source/prj/amigao/build/bin/http/cmake_install.cmake")
 
 endif()
 

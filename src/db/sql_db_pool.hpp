@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Author: susu1970@yandex.com 
+// Author: 758293230@qq.com
 //
 
 #ifndef AMIGAO_DB_SQL_DB_POOL_H_
@@ -32,7 +32,6 @@ extern MYSQL*maria_real_connect(MYSQL*mysql,std::string HOST,
 extern int maria_real_query(MYSQL*mysql,std::string);
 
 namespace amigao{
-  //using singleton pattern
   class SqlDBPool:public DBPoolInterface{
     virtual void add_connection(int add_numbers)override{
       using namespace std;
@@ -91,7 +90,7 @@ namespace amigao{
     }       
     virtual void recycle_connection(void*connection)override{
       pthread_mutex_lock(&used_lock);
-      if(!used_pool->if_exist(connection)){
+      if(!(used_pool->if_exist(connection))){
 	pthread_mutex_unlock(&used_lock);
 	return;
       }

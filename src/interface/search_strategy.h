@@ -12,27 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Author: susu1970@yandex.com 
+// Author: 758293230@qq.com
 //
 
 #ifndef AMIGAO_INTERFACE_SEARCH_STRATEGY_H_
 #define AMIGAO_INTERFACE_SEARCH_STRATEGY_H_
 
-#include"interface/search_result.h"
+#include<string>
 
 namespace amigao{
   class DBOperationInterface;
   class SearchStrategyInterface{
-  protected:
-    SearchResultInterface*search_result;
   public:
-    SearchResultInterface*get_search_result(){
-      return search_result;
-    }
-    virtual void handle(std::string search_sentence,DBOperationInterface*)=0;
+    virtual void handle(std::string &search_sentence,void*result_,DBOperationInterface*,short& start_page,short& results_per_page,bool use_stop_word=true)=0;
     virtual ~SearchStrategyInterface(){
-      delete search_result;
-      search_result=nullptr;
     }
   };
 }

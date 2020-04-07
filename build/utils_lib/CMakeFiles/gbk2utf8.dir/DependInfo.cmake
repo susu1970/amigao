@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/utils/gbk2utf8.cc" "/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/utils_lib/CMakeFiles/gbk2utf8.dir/gbk2utf8.cc.o"
+  "/home/ydssbbnc/do/document/source/prj/amigao/src/utils/gbk2utf8.cc" "/home/ydssbbnc/do/document/source/prj/amigao/build/utils_lib/CMakeFiles/gbk2utf8.dir/gbk2utf8.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

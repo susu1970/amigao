@@ -1,1 +1,0 @@
-/bin/c++    -rdynamic CMakeFiles/ini_parser_test.dir/ini_parser.cc.o  -o ini_parser_test  -lcppunit 

@@ -48,13 +48,24 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ydssbbnc/study/hwork/graduationPrj/amigao
+CMAKE_SOURCE_DIR = /home/ydssbbnc/do/document/source/prj/amigao
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ydssbbnc/study/hwork/graduationPrj/amigao/build
+CMAKE_BINARY_DIR = /home/ydssbbnc/do/document/source/prj/amigao/build
 
 #=============================================================================
 # Targets provided globally by CMake.
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -78,27 +89,16 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # The main all target
 all: cmake_check_build_system
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/test/CMakeFiles/progress.marks
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles 0
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles /home/ydssbbnc/do/document/source/prj/amigao/build/test/CMakeFiles/progress.marks
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/clean
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/clean
 .PHONY : clean
 
 # The main clean target
@@ -108,354 +108,60 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/preinstall
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/preinstall
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-test/CMakeFiles/sql_db_operation_test.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/sql_db_operation_test.dir/rule
-.PHONY : test/CMakeFiles/sql_db_operation_test.dir/rule
+test/CMakeFiles/plain_search_strategy_test.dir/rule:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/plain_search_strategy_test.dir/rule
+.PHONY : test/CMakeFiles/plain_search_strategy_test.dir/rule
 
 # Convenience name for target.
-sql_db_operation_test: test/CMakeFiles/sql_db_operation_test.dir/rule
+plain_search_strategy_test: test/CMakeFiles/plain_search_strategy_test.dir/rule
 
-.PHONY : sql_db_operation_test
+.PHONY : plain_search_strategy_test
 
 # fast build rule for target.
-sql_db_operation_test/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/sql_db_operation_test.dir/build.make test/CMakeFiles/sql_db_operation_test.dir/build
-.PHONY : sql_db_operation_test/fast
+plain_search_strategy_test/fast:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f test/CMakeFiles/plain_search_strategy_test.dir/build.make test/CMakeFiles/plain_search_strategy_test.dir/build
+.PHONY : plain_search_strategy_test/fast
 
-# Convenience name for target.
-test/CMakeFiles/db_pool_list_test.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/db_pool_list_test.dir/rule
-.PHONY : test/CMakeFiles/db_pool_list_test.dir/rule
+plain_search_strategy.o: plain_search_strategy.cc.o
 
-# Convenience name for target.
-db_pool_list_test: test/CMakeFiles/db_pool_list_test.dir/rule
-
-.PHONY : db_pool_list_test
-
-# fast build rule for target.
-db_pool_list_test/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/db_pool_list_test.dir/build.make test/CMakeFiles/db_pool_list_test.dir/build
-.PHONY : db_pool_list_test/fast
-
-# Convenience name for target.
-test/CMakeFiles/crypt_string_test.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/crypt_string_test.dir/rule
-.PHONY : test/CMakeFiles/crypt_string_test.dir/rule
-
-# Convenience name for target.
-crypt_string_test: test/CMakeFiles/crypt_string_test.dir/rule
-
-.PHONY : crypt_string_test
-
-# fast build rule for target.
-crypt_string_test/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/crypt_string_test.dir/build.make test/CMakeFiles/crypt_string_test.dir/build
-.PHONY : crypt_string_test/fast
-
-# Convenience name for target.
-test/CMakeFiles/sql_db_pool_test.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/sql_db_pool_test.dir/rule
-.PHONY : test/CMakeFiles/sql_db_pool_test.dir/rule
-
-# Convenience name for target.
-sql_db_pool_test: test/CMakeFiles/sql_db_pool_test.dir/rule
-
-.PHONY : sql_db_pool_test
-
-# fast build rule for target.
-sql_db_pool_test/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/sql_db_pool_test.dir/build.make test/CMakeFiles/sql_db_pool_test.dir/build
-.PHONY : sql_db_pool_test/fast
-
-# Convenience name for target.
-test/CMakeFiles/db_info_test.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/db_info_test.dir/rule
-.PHONY : test/CMakeFiles/db_info_test.dir/rule
-
-# Convenience name for target.
-db_info_test: test/CMakeFiles/db_info_test.dir/rule
-
-.PHONY : db_info_test
-
-# fast build rule for target.
-db_info_test/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/db_info_test.dir/build.make test/CMakeFiles/db_info_test.dir/build
-.PHONY : db_info_test/fast
-
-# Convenience name for target.
-test/CMakeFiles/format_url_test.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/format_url_test.dir/rule
-.PHONY : test/CMakeFiles/format_url_test.dir/rule
-
-# Convenience name for target.
-format_url_test: test/CMakeFiles/format_url_test.dir/rule
-
-.PHONY : format_url_test
-
-# fast build rule for target.
-format_url_test/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/format_url_test.dir/build.make test/CMakeFiles/format_url_test.dir/build
-.PHONY : format_url_test/fast
-
-# Convenience name for target.
-test/CMakeFiles/parse_url_test.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/parse_url_test.dir/rule
-.PHONY : test/CMakeFiles/parse_url_test.dir/rule
-
-# Convenience name for target.
-parse_url_test: test/CMakeFiles/parse_url_test.dir/rule
-
-.PHONY : parse_url_test
-
-# fast build rule for target.
-parse_url_test/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/parse_url_test.dir/build.make test/CMakeFiles/parse_url_test.dir/build
-.PHONY : parse_url_test/fast
-
-# Convenience name for target.
-test/CMakeFiles/ini_parser_test.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/ini_parser_test.dir/rule
-.PHONY : test/CMakeFiles/ini_parser_test.dir/rule
-
-# Convenience name for target.
-ini_parser_test: test/CMakeFiles/ini_parser_test.dir/rule
-
-.PHONY : ini_parser_test
-
-# fast build rule for target.
-ini_parser_test/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/ini_parser_test.dir/build.make test/CMakeFiles/ini_parser_test.dir/build
-.PHONY : ini_parser_test/fast
-
-crypt_string.o: crypt_string.cc.o
-
-.PHONY : crypt_string.o
+.PHONY : plain_search_strategy.o
 
 # target to build an object file
-crypt_string.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/crypt_string_test.dir/build.make test/CMakeFiles/crypt_string_test.dir/crypt_string.cc.o
-.PHONY : crypt_string.cc.o
+plain_search_strategy.cc.o:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f test/CMakeFiles/plain_search_strategy_test.dir/build.make test/CMakeFiles/plain_search_strategy_test.dir/plain_search_strategy.cc.o
+.PHONY : plain_search_strategy.cc.o
 
-crypt_string.i: crypt_string.cc.i
+plain_search_strategy.i: plain_search_strategy.cc.i
 
-.PHONY : crypt_string.i
-
-# target to preprocess a source file
-crypt_string.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/crypt_string_test.dir/build.make test/CMakeFiles/crypt_string_test.dir/crypt_string.cc.i
-.PHONY : crypt_string.cc.i
-
-crypt_string.s: crypt_string.cc.s
-
-.PHONY : crypt_string.s
-
-# target to generate assembly for a file
-crypt_string.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/crypt_string_test.dir/build.make test/CMakeFiles/crypt_string_test.dir/crypt_string.cc.s
-.PHONY : crypt_string.cc.s
-
-db_info.o: db_info.cc.o
-
-.PHONY : db_info.o
-
-# target to build an object file
-db_info.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/db_info_test.dir/build.make test/CMakeFiles/db_info_test.dir/db_info.cc.o
-.PHONY : db_info.cc.o
-
-db_info.i: db_info.cc.i
-
-.PHONY : db_info.i
+.PHONY : plain_search_strategy.i
 
 # target to preprocess a source file
-db_info.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/db_info_test.dir/build.make test/CMakeFiles/db_info_test.dir/db_info.cc.i
-.PHONY : db_info.cc.i
+plain_search_strategy.cc.i:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f test/CMakeFiles/plain_search_strategy_test.dir/build.make test/CMakeFiles/plain_search_strategy_test.dir/plain_search_strategy.cc.i
+.PHONY : plain_search_strategy.cc.i
 
-db_info.s: db_info.cc.s
+plain_search_strategy.s: plain_search_strategy.cc.s
 
-.PHONY : db_info.s
-
-# target to generate assembly for a file
-db_info.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/db_info_test.dir/build.make test/CMakeFiles/db_info_test.dir/db_info.cc.s
-.PHONY : db_info.cc.s
-
-db_pool_list.o: db_pool_list.cc.o
-
-.PHONY : db_pool_list.o
-
-# target to build an object file
-db_pool_list.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/db_pool_list_test.dir/build.make test/CMakeFiles/db_pool_list_test.dir/db_pool_list.cc.o
-.PHONY : db_pool_list.cc.o
-
-db_pool_list.i: db_pool_list.cc.i
-
-.PHONY : db_pool_list.i
-
-# target to preprocess a source file
-db_pool_list.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/db_pool_list_test.dir/build.make test/CMakeFiles/db_pool_list_test.dir/db_pool_list.cc.i
-.PHONY : db_pool_list.cc.i
-
-db_pool_list.s: db_pool_list.cc.s
-
-.PHONY : db_pool_list.s
+.PHONY : plain_search_strategy.s
 
 # target to generate assembly for a file
-db_pool_list.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/db_pool_list_test.dir/build.make test/CMakeFiles/db_pool_list_test.dir/db_pool_list.cc.s
-.PHONY : db_pool_list.cc.s
-
-format_url.o: format_url.cc.o
-
-.PHONY : format_url.o
-
-# target to build an object file
-format_url.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/format_url_test.dir/build.make test/CMakeFiles/format_url_test.dir/format_url.cc.o
-.PHONY : format_url.cc.o
-
-format_url.i: format_url.cc.i
-
-.PHONY : format_url.i
-
-# target to preprocess a source file
-format_url.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/format_url_test.dir/build.make test/CMakeFiles/format_url_test.dir/format_url.cc.i
-.PHONY : format_url.cc.i
-
-format_url.s: format_url.cc.s
-
-.PHONY : format_url.s
-
-# target to generate assembly for a file
-format_url.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/format_url_test.dir/build.make test/CMakeFiles/format_url_test.dir/format_url.cc.s
-.PHONY : format_url.cc.s
-
-ini_parser.o: ini_parser.cc.o
-
-.PHONY : ini_parser.o
-
-# target to build an object file
-ini_parser.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/ini_parser_test.dir/build.make test/CMakeFiles/ini_parser_test.dir/ini_parser.cc.o
-.PHONY : ini_parser.cc.o
-
-ini_parser.i: ini_parser.cc.i
-
-.PHONY : ini_parser.i
-
-# target to preprocess a source file
-ini_parser.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/ini_parser_test.dir/build.make test/CMakeFiles/ini_parser_test.dir/ini_parser.cc.i
-.PHONY : ini_parser.cc.i
-
-ini_parser.s: ini_parser.cc.s
-
-.PHONY : ini_parser.s
-
-# target to generate assembly for a file
-ini_parser.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/ini_parser_test.dir/build.make test/CMakeFiles/ini_parser_test.dir/ini_parser.cc.s
-.PHONY : ini_parser.cc.s
-
-parse_url.o: parse_url.cc.o
-
-.PHONY : parse_url.o
-
-# target to build an object file
-parse_url.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/parse_url_test.dir/build.make test/CMakeFiles/parse_url_test.dir/parse_url.cc.o
-.PHONY : parse_url.cc.o
-
-parse_url.i: parse_url.cc.i
-
-.PHONY : parse_url.i
-
-# target to preprocess a source file
-parse_url.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/parse_url_test.dir/build.make test/CMakeFiles/parse_url_test.dir/parse_url.cc.i
-.PHONY : parse_url.cc.i
-
-parse_url.s: parse_url.cc.s
-
-.PHONY : parse_url.s
-
-# target to generate assembly for a file
-parse_url.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/parse_url_test.dir/build.make test/CMakeFiles/parse_url_test.dir/parse_url.cc.s
-.PHONY : parse_url.cc.s
-
-sql_db_operation.o: sql_db_operation.cc.o
-
-.PHONY : sql_db_operation.o
-
-# target to build an object file
-sql_db_operation.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/sql_db_operation_test.dir/build.make test/CMakeFiles/sql_db_operation_test.dir/sql_db_operation.cc.o
-.PHONY : sql_db_operation.cc.o
-
-sql_db_operation.i: sql_db_operation.cc.i
-
-.PHONY : sql_db_operation.i
-
-# target to preprocess a source file
-sql_db_operation.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/sql_db_operation_test.dir/build.make test/CMakeFiles/sql_db_operation_test.dir/sql_db_operation.cc.i
-.PHONY : sql_db_operation.cc.i
-
-sql_db_operation.s: sql_db_operation.cc.s
-
-.PHONY : sql_db_operation.s
-
-# target to generate assembly for a file
-sql_db_operation.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/sql_db_operation_test.dir/build.make test/CMakeFiles/sql_db_operation_test.dir/sql_db_operation.cc.s
-.PHONY : sql_db_operation.cc.s
-
-sql_db_pool.o: sql_db_pool.cc.o
-
-.PHONY : sql_db_pool.o
-
-# target to build an object file
-sql_db_pool.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/sql_db_pool_test.dir/build.make test/CMakeFiles/sql_db_pool_test.dir/sql_db_pool.cc.o
-.PHONY : sql_db_pool.cc.o
-
-sql_db_pool.i: sql_db_pool.cc.i
-
-.PHONY : sql_db_pool.i
-
-# target to preprocess a source file
-sql_db_pool.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/sql_db_pool_test.dir/build.make test/CMakeFiles/sql_db_pool_test.dir/sql_db_pool.cc.i
-.PHONY : sql_db_pool.cc.i
-
-sql_db_pool.s: sql_db_pool.cc.s
-
-.PHONY : sql_db_pool.s
-
-# target to generate assembly for a file
-sql_db_pool.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f test/CMakeFiles/sql_db_pool_test.dir/build.make test/CMakeFiles/sql_db_pool_test.dir/sql_db_pool.cc.s
-.PHONY : sql_db_pool.cc.s
+plain_search_strategy.cc.s:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f test/CMakeFiles/plain_search_strategy_test.dir/build.make test/CMakeFiles/plain_search_strategy_test.dir/plain_search_strategy.cc.s
+.PHONY : plain_search_strategy.cc.s
 
 # Help Target
 help:
@@ -463,41 +169,13 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
-	@echo "... rebuild_cache"
-	@echo "... sql_db_operation_test"
-	@echo "... db_pool_list_test"
-	@echo "... crypt_string_test"
-	@echo "... sql_db_pool_test"
-	@echo "... db_info_test"
-	@echo "... format_url_test"
-	@echo "... parse_url_test"
-	@echo "... ini_parser_test"
-	@echo "... crypt_string.o"
-	@echo "... crypt_string.i"
-	@echo "... crypt_string.s"
-	@echo "... db_info.o"
-	@echo "... db_info.i"
-	@echo "... db_info.s"
-	@echo "... db_pool_list.o"
-	@echo "... db_pool_list.i"
-	@echo "... db_pool_list.s"
-	@echo "... format_url.o"
-	@echo "... format_url.i"
-	@echo "... format_url.s"
-	@echo "... ini_parser.o"
-	@echo "... ini_parser.i"
-	@echo "... ini_parser.s"
-	@echo "... parse_url.o"
-	@echo "... parse_url.i"
-	@echo "... parse_url.s"
-	@echo "... sql_db_operation.o"
-	@echo "... sql_db_operation.i"
-	@echo "... sql_db_operation.s"
-	@echo "... sql_db_pool.o"
-	@echo "... sql_db_pool.i"
-	@echo "... sql_db_pool.s"
+	@echo "... plain_search_strategy_test"
+	@echo "... plain_search_strategy.o"
+	@echo "... plain_search_strategy.i"
+	@echo "... plain_search_strategy.s"
 .PHONY : help
 
 
@@ -509,6 +187,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

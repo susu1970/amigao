@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Author: susu1970@yandex.com 
+// Author: 758293230@qq.com
 //
 
 #ifndef AMIGAO_SPIDER_SHMCTRL_H_
@@ -26,9 +26,9 @@
 the queue size should more than 2
  */
 struct shmctrl{
-  pthread_mutex_t url_lock,html_lock;
+  pthread_mutex_t url_lock,html_lock,url_lists_lock;
   char url_queue[URL_NUMS][URL_SIZE];
-  char html_queue[HTML_NUMS][HTML_SIZE];
+  char html_queue[HTML_NUMS][HTML_SIZE+URL_SIZE];
   int url_head,url_tail,html_head,html_tail;
 };
 /*

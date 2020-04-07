@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ydssbbnc/study/hwork/graduationPrj/amigao
+CMAKE_SOURCE_DIR = /home/ydssbbnc/do/document/source/prj/amigao
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ydssbbnc/study/hwork/graduationPrj/amigao/build
+CMAKE_BINARY_DIR = /home/ydssbbnc/do/document/source/prj/amigao/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,27 +78,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # The main all target
 all: cmake_check_build_system
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/bin/spider/CMakeFiles/progress.marks
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles 0
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles /home/ydssbbnc/do/document/source/prj/amigao/build/bin/spider/CMakeFiles/progress.marks
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/clean
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/clean
 .PHONY : clean
 
 # The main clean target
@@ -108,22 +97,37 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/preinstall
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/preinstall
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
+bin/spider/CMakeFiles/monitor.dir/rule:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/CMakeFiles/monitor.dir/rule
+.PHONY : bin/spider/CMakeFiles/monitor.dir/rule
+
+# Convenience name for target.
+monitor: bin/spider/CMakeFiles/monitor.dir/rule
+
+.PHONY : monitor
+
+# fast build rule for target.
+monitor/fast:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/monitor.dir/build.make bin/spider/CMakeFiles/monitor.dir/build
+.PHONY : monitor/fast
+
+# Convenience name for target.
 bin/spider/CMakeFiles/crawl_worker.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/CMakeFiles/crawl_worker.dir/rule
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/CMakeFiles/crawl_worker.dir/rule
 .PHONY : bin/spider/CMakeFiles/crawl_worker.dir/rule
 
 # Convenience name for target.
@@ -133,12 +137,12 @@ crawl_worker: bin/spider/CMakeFiles/crawl_worker.dir/rule
 
 # fast build rule for target.
 crawl_worker/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/crawl_worker.dir/build.make bin/spider/CMakeFiles/crawl_worker.dir/build
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/crawl_worker.dir/build.make bin/spider/CMakeFiles/crawl_worker.dir/build
 .PHONY : crawl_worker/fast
 
 # Convenience name for target.
 bin/spider/CMakeFiles/parse_worker.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/CMakeFiles/parse_worker.dir/rule
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/CMakeFiles/parse_worker.dir/rule
 .PHONY : bin/spider/CMakeFiles/parse_worker.dir/rule
 
 # Convenience name for target.
@@ -148,12 +152,12 @@ parse_worker: bin/spider/CMakeFiles/parse_worker.dir/rule
 
 # fast build rule for target.
 parse_worker/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/parse_worker.dir/build.make bin/spider/CMakeFiles/parse_worker.dir/build
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/parse_worker.dir/build.make bin/spider/CMakeFiles/parse_worker.dir/build
 .PHONY : parse_worker/fast
 
 # Convenience name for target.
 bin/spider/CMakeFiles/master.dir/rule:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/CMakeFiles/master.dir/rule
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/spider/CMakeFiles/master.dir/rule
 .PHONY : bin/spider/CMakeFiles/master.dir/rule
 
 # Convenience name for target.
@@ -163,7 +167,7 @@ master: bin/spider/CMakeFiles/master.dir/rule
 
 # fast build rule for target.
 master/fast:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/master.dir/build.make bin/spider/CMakeFiles/master.dir/build
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/master.dir/build.make bin/spider/CMakeFiles/master.dir/build
 .PHONY : master/fast
 
 crawl_worker.o: crawl_worker.cc.o
@@ -172,7 +176,7 @@ crawl_worker.o: crawl_worker.cc.o
 
 # target to build an object file
 crawl_worker.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/crawl_worker.dir/build.make bin/spider/CMakeFiles/crawl_worker.dir/crawl_worker.cc.o
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/crawl_worker.dir/build.make bin/spider/CMakeFiles/crawl_worker.dir/crawl_worker.cc.o
 .PHONY : crawl_worker.cc.o
 
 crawl_worker.i: crawl_worker.cc.i
@@ -181,7 +185,7 @@ crawl_worker.i: crawl_worker.cc.i
 
 # target to preprocess a source file
 crawl_worker.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/crawl_worker.dir/build.make bin/spider/CMakeFiles/crawl_worker.dir/crawl_worker.cc.i
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/crawl_worker.dir/build.make bin/spider/CMakeFiles/crawl_worker.dir/crawl_worker.cc.i
 .PHONY : crawl_worker.cc.i
 
 crawl_worker.s: crawl_worker.cc.s
@@ -190,7 +194,7 @@ crawl_worker.s: crawl_worker.cc.s
 
 # target to generate assembly for a file
 crawl_worker.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/crawl_worker.dir/build.make bin/spider/CMakeFiles/crawl_worker.dir/crawl_worker.cc.s
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/crawl_worker.dir/build.make bin/spider/CMakeFiles/crawl_worker.dir/crawl_worker.cc.s
 .PHONY : crawl_worker.cc.s
 
 master.o: master.cc.o
@@ -199,7 +203,7 @@ master.o: master.cc.o
 
 # target to build an object file
 master.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/master.dir/build.make bin/spider/CMakeFiles/master.dir/master.cc.o
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/master.dir/build.make bin/spider/CMakeFiles/master.dir/master.cc.o
 .PHONY : master.cc.o
 
 master.i: master.cc.i
@@ -208,7 +212,7 @@ master.i: master.cc.i
 
 # target to preprocess a source file
 master.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/master.dir/build.make bin/spider/CMakeFiles/master.dir/master.cc.i
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/master.dir/build.make bin/spider/CMakeFiles/master.dir/master.cc.i
 .PHONY : master.cc.i
 
 master.s: master.cc.s
@@ -217,8 +221,35 @@ master.s: master.cc.s
 
 # target to generate assembly for a file
 master.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/master.dir/build.make bin/spider/CMakeFiles/master.dir/master.cc.s
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/master.dir/build.make bin/spider/CMakeFiles/master.dir/master.cc.s
 .PHONY : master.cc.s
+
+monitor.o: monitor.cc.o
+
+.PHONY : monitor.o
+
+# target to build an object file
+monitor.cc.o:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/monitor.dir/build.make bin/spider/CMakeFiles/monitor.dir/monitor.cc.o
+.PHONY : monitor.cc.o
+
+monitor.i: monitor.cc.i
+
+.PHONY : monitor.i
+
+# target to preprocess a source file
+monitor.cc.i:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/monitor.dir/build.make bin/spider/CMakeFiles/monitor.dir/monitor.cc.i
+.PHONY : monitor.cc.i
+
+monitor.s: monitor.cc.s
+
+.PHONY : monitor.s
+
+# target to generate assembly for a file
+monitor.cc.s:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/monitor.dir/build.make bin/spider/CMakeFiles/monitor.dir/monitor.cc.s
+.PHONY : monitor.cc.s
 
 parse_worker.o: parse_worker.cc.o
 
@@ -226,7 +257,7 @@ parse_worker.o: parse_worker.cc.o
 
 # target to build an object file
 parse_worker.cc.o:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/parse_worker.dir/build.make bin/spider/CMakeFiles/parse_worker.dir/parse_worker.cc.o
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/parse_worker.dir/build.make bin/spider/CMakeFiles/parse_worker.dir/parse_worker.cc.o
 .PHONY : parse_worker.cc.o
 
 parse_worker.i: parse_worker.cc.i
@@ -235,7 +266,7 @@ parse_worker.i: parse_worker.cc.i
 
 # target to preprocess a source file
 parse_worker.cc.i:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/parse_worker.dir/build.make bin/spider/CMakeFiles/parse_worker.dir/parse_worker.cc.i
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/parse_worker.dir/build.make bin/spider/CMakeFiles/parse_worker.dir/parse_worker.cc.i
 .PHONY : parse_worker.cc.i
 
 parse_worker.s: parse_worker.cc.s
@@ -244,7 +275,7 @@ parse_worker.s: parse_worker.cc.s
 
 # target to generate assembly for a file
 parse_worker.cc.s:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/parse_worker.dir/build.make bin/spider/CMakeFiles/parse_worker.dir/parse_worker.cc.s
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/spider/CMakeFiles/parse_worker.dir/build.make bin/spider/CMakeFiles/parse_worker.dir/parse_worker.cc.s
 .PHONY : parse_worker.cc.s
 
 # Help Target
@@ -255,7 +286,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... test"
+	@echo "... monitor"
 	@echo "... crawl_worker"
 	@echo "... parse_worker"
 	@echo "... master"
@@ -265,6 +296,9 @@ help:
 	@echo "... master.o"
 	@echo "... master.i"
 	@echo "... master.s"
+	@echo "... monitor.o"
+	@echo "... monitor.i"
+	@echo "... monitor.s"
 	@echo "... parse_worker.o"
 	@echo "... parse_worker.i"
 	@echo "... parse_worker.s"
@@ -279,6 +313,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ydssbbnc/study/hwork/graduationPrj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

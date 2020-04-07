@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ydssbbnc/study/hwork/graduationPrj/amigao
+CMAKE_SOURCE_DIR = /home/ydssbbnc/do/document/source/prj/amigao
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ydssbbnc/study/hwork/graduationPrj/amigao/build
+CMAKE_BINARY_DIR = /home/ydssbbnc/do/document/source/prj/amigao/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -78,22 +78,11 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/study/hwork/graduationPrj/amigao/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -148,6 +137,19 @@ add_dict_table_from_file/fast:
 .PHONY : add_dict_table_from_file/fast
 
 #=============================================================================
+# Target rules for targets named monitor
+
+# Build rule for target.
+monitor: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 monitor
+.PHONY : monitor
+
+# fast build rule for target.
+monitor/fast:
+	$(MAKE) -f bin/spider/CMakeFiles/monitor.dir/build.make bin/spider/CMakeFiles/monitor.dir/build
+.PHONY : monitor/fast
+
+#=============================================================================
 # Target rules for targets named crawl_worker
 
 # Build rule for target.
@@ -185,6 +187,19 @@ master: cmake_check_build_system
 master/fast:
 	$(MAKE) -f bin/spider/CMakeFiles/master.dir/build.make bin/spider/CMakeFiles/master.dir/build
 .PHONY : master/fast
+
+#=============================================================================
+# Target rules for targets named str2sum
+
+# Build rule for target.
+str2sum: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 str2sum
+.PHONY : str2sum
+
+# fast build rule for target.
+str2sum/fast:
+	$(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/build
+.PHONY : str2sum/fast
 
 #=============================================================================
 # Target rules for targets named maria_op
@@ -239,6 +254,19 @@ parse_url/fast:
 .PHONY : parse_url/fast
 
 #=============================================================================
+# Target rules for targets named escape_url
+
+# Build rule for target.
+escape_url: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 escape_url
+.PHONY : escape_url
+
+# fast build rule for target.
+escape_url/fast:
+	$(MAKE) -f utils_lib/CMakeFiles/escape_url.dir/build.make utils_lib/CMakeFiles/escape_url.dir/build
+.PHONY : escape_url/fast
+
+#=============================================================================
 # Target rules for targets named parse_html
 
 # Build rule for target.
@@ -264,110 +292,6 @@ format_url/fast:
 	$(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/build
 .PHONY : format_url/fast
 
-#=============================================================================
-# Target rules for targets named sql_db_operation_test
-
-# Build rule for target.
-sql_db_operation_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sql_db_operation_test
-.PHONY : sql_db_operation_test
-
-# fast build rule for target.
-sql_db_operation_test/fast:
-	$(MAKE) -f test/CMakeFiles/sql_db_operation_test.dir/build.make test/CMakeFiles/sql_db_operation_test.dir/build
-.PHONY : sql_db_operation_test/fast
-
-#=============================================================================
-# Target rules for targets named db_pool_list_test
-
-# Build rule for target.
-db_pool_list_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 db_pool_list_test
-.PHONY : db_pool_list_test
-
-# fast build rule for target.
-db_pool_list_test/fast:
-	$(MAKE) -f test/CMakeFiles/db_pool_list_test.dir/build.make test/CMakeFiles/db_pool_list_test.dir/build
-.PHONY : db_pool_list_test/fast
-
-#=============================================================================
-# Target rules for targets named crypt_string_test
-
-# Build rule for target.
-crypt_string_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 crypt_string_test
-.PHONY : crypt_string_test
-
-# fast build rule for target.
-crypt_string_test/fast:
-	$(MAKE) -f test/CMakeFiles/crypt_string_test.dir/build.make test/CMakeFiles/crypt_string_test.dir/build
-.PHONY : crypt_string_test/fast
-
-#=============================================================================
-# Target rules for targets named sql_db_pool_test
-
-# Build rule for target.
-sql_db_pool_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sql_db_pool_test
-.PHONY : sql_db_pool_test
-
-# fast build rule for target.
-sql_db_pool_test/fast:
-	$(MAKE) -f test/CMakeFiles/sql_db_pool_test.dir/build.make test/CMakeFiles/sql_db_pool_test.dir/build
-.PHONY : sql_db_pool_test/fast
-
-#=============================================================================
-# Target rules for targets named db_info_test
-
-# Build rule for target.
-db_info_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 db_info_test
-.PHONY : db_info_test
-
-# fast build rule for target.
-db_info_test/fast:
-	$(MAKE) -f test/CMakeFiles/db_info_test.dir/build.make test/CMakeFiles/db_info_test.dir/build
-.PHONY : db_info_test/fast
-
-#=============================================================================
-# Target rules for targets named format_url_test
-
-# Build rule for target.
-format_url_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 format_url_test
-.PHONY : format_url_test
-
-# fast build rule for target.
-format_url_test/fast:
-	$(MAKE) -f test/CMakeFiles/format_url_test.dir/build.make test/CMakeFiles/format_url_test.dir/build
-.PHONY : format_url_test/fast
-
-#=============================================================================
-# Target rules for targets named parse_url_test
-
-# Build rule for target.
-parse_url_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 parse_url_test
-.PHONY : parse_url_test
-
-# fast build rule for target.
-parse_url_test/fast:
-	$(MAKE) -f test/CMakeFiles/parse_url_test.dir/build.make test/CMakeFiles/parse_url_test.dir/build
-.PHONY : parse_url_test/fast
-
-#=============================================================================
-# Target rules for targets named ini_parser_test
-
-# Build rule for target.
-ini_parser_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ini_parser_test
-.PHONY : ini_parser_test
-
-# fast build rule for target.
-ini_parser_test/fast:
-	$(MAKE) -f test/CMakeFiles/ini_parser_test.dir/build.make test/CMakeFiles/ini_parser_test.dir/build
-.PHONY : ini_parser_test/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -376,26 +300,20 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... test"
 	@echo "... tmp"
 	@echo "... add_dict_table_from_file"
+	@echo "... monitor"
 	@echo "... crawl_worker"
 	@echo "... parse_worker"
 	@echo "... master"
+	@echo "... str2sum"
 	@echo "... maria_op"
 	@echo "... crypt_string"
 	@echo "... gbk2utf8"
 	@echo "... parse_url"
+	@echo "... escape_url"
 	@echo "... parse_html"
 	@echo "... format_url"
-	@echo "... sql_db_operation_test"
-	@echo "... db_pool_list_test"
-	@echo "... crypt_string_test"
-	@echo "... sql_db_pool_test"
-	@echo "... db_info_test"
-	@echo "... format_url_test"
-	@echo "... parse_url_test"
-	@echo "... ini_parser_test"
 .PHONY : help
 
 

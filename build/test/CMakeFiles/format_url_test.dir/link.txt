@@ -1,1 +1,0 @@
-/bin/c++    -rdynamic CMakeFiles/format_url_test.dir/format_url.cc.o  -o format_url_test  -lcppunit ../utils_lib/libformat_url.a 

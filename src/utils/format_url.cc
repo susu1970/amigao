@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Author: susu1970@yandex.com 
+// Author: 758293230@qq.com
 //
 
 #include<string>
@@ -77,11 +77,17 @@ void format_url(string&url){
     url="";
   else
     url=url.substr(i,len-i);
-  if(url.size()==0||
-     !(
-       (url[0]>='a'&&url[0]<='z')||
-       (url[0]>='A'&&url[0]<='Z')||
-       (url[0]>='0'&&url[0]<='9')
-       ))
+  if(url.empty())return;
+  if(url[0]=='/'||url[0]=='#'||url[0]=='<'||url[0]=='>'||url[0]=='.'){
+    url="";return;
+  } 
+  bool pre=false;
+  for(size_t i=1;i<url.size();++i){
+    if(url[i]=='<'||url[i]=='>'||url[i]=='#'||(url[i]=='/'&&!pre)){
+      url="";return;
+    }else if(url[i]=='.')pre=true;
+  }
+  if(!pre)
     url="";
 }
+

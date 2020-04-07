@@ -22,6 +22,7 @@ class Jieba {
       query_seg_(&dict_trie_, &model_),
       extractor(&dict_trie_, &model_, idfPath, stopWordPath) {
   }
+
   ~Jieba() {
   }
 

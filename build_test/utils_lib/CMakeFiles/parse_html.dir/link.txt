@@ -1,0 +1,2 @@
+/bin/ar qc libparse_html.a  CMakeFiles/parse_html.dir/parse_html.cc.o
+/bin/ranlib libparse_html.a

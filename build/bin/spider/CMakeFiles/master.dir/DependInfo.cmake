@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ydssbbnc/study/hwork/graduationPrj/amigao/src/spider/master.cc" "/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/bin/spider/CMakeFiles/master.dir/master.cc.o"
+  "/home/ydssbbnc/do/document/source/prj/amigao/src/spider/master.cc" "/home/ydssbbnc/do/document/source/prj/amigao/build/bin/spider/CMakeFiles/master.dir/master.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -15,9 +15,9 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/utils_lib/CMakeFiles/format_url.dir/DependInfo.cmake"
-  "/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/utils_lib/CMakeFiles/maria_op.dir/DependInfo.cmake"
-  "/home/ydssbbnc/study/hwork/graduationPrj/amigao/build/utils_lib/CMakeFiles/crypt_string.dir/DependInfo.cmake"
+  "/home/ydssbbnc/do/document/source/prj/amigao/build/utils_lib/CMakeFiles/format_url.dir/DependInfo.cmake"
+  "/home/ydssbbnc/do/document/source/prj/amigao/build/utils_lib/CMakeFiles/maria_op.dir/DependInfo.cmake"
+  "/home/ydssbbnc/do/document/source/prj/amigao/build/utils_lib/CMakeFiles/crypt_string.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -1,0 +1,2 @@
+/bin/ar qc libstr2sum.a  CMakeFiles/str2sum.dir/str2sum.cc.o
+/bin/ranlib libstr2sum.a

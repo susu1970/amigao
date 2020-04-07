@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-// Author: susu1970@yandex.com 
+// Author: 758293230@qq.com
 //
 
 #include<gumbo.h>
 #include<string>
-#include<set>
+#include<unordered_set>
 
 #include"values.h"
 
@@ -25,7 +25,7 @@ using namespace std;
 
 extern void format_url(string&);
 
-void get_links_contents(GumboNode*node,set<string>&links,string&contents){
+void get_links_contents(GumboNode*node,unordered_set<string>&links,string&contents){
   if(node->type==GUMBO_NODE_TEXT){
     contents+=string(node->v.text.text);
     return;
@@ -36,11 +36,9 @@ void get_links_contents(GumboNode*node,set<string>&links,string&contents){
     if(node->v.element.tag==GUMBO_TAG_A&&
        (href=gumbo_get_attribute(&node->v.element.attributes,"href"))){
 	string tmp_url=href->value;
-	if(tmp_url.size()<=URL_SIZE){
-	  format_url(tmp_url);
-	  if(!tmp_url.empty())
-	    links.insert(tmp_url);
-	}
+	format_url(tmp_url);
+	if(!tmp_url.empty()&&tmp_url.size()<=URL_SIZE)
+	  links.insert(tmp_url);
     }
     string temp_contents="";
     GumboVector*children=&node->v.element.children;

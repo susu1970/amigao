@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ydssbbnc/do/document/source/prj/amigao/src/utils/maria_op.cc
+mariadb/mysql.h
+-
+string
+-
+syslog.h
+-
+iostream
+-
+

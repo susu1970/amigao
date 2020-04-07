@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ydssbbnc/study/hwork/graduationPrj/amigao/src 
+CXX_INCLUDES = -I/home/ydssbbnc/do/document/source/prj/amigao/src 
 
