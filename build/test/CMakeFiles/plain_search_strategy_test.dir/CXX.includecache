@@ -83,8 +83,6 @@ sstream
 -
 unordered_map
 -
-mariadb/mysql.h
--
 values.h
 ../src/strategy/values.h
 interface/search_strategy.h
@@ -93,8 +91,8 @@ utils/cppjieba/Jieba.hpp
 ../src/strategy/utils/cppjieba/Jieba.hpp
 strategy/plain_search_result.hpp
 ../src/strategy/strategy/plain_search_result.hpp
-interface/db_operation.h
-../src/strategy/interface/db_operation.h
+db/sql_db_operation.hpp
+../src/strategy/db/sql_db_operation.hpp
 
 ../src/utils/cppjieba/DictTrie.hpp
 iostream

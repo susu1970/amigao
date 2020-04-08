@@ -95,22 +95,22 @@ int main(int argc,char**argv){
   start_search:
     amigao::PlainSearchResult search_result;
     cout<<"---<before>---"<<endl;
-    cout<<"sentence: "<<sentence<<endl;
     cout<<"start_page: "<<start_page<<endl;
     cout<<"results_per_page: "<<results_per_page<<endl;
+    cout<<"sentence: "<<sentence<<endl;
     cout<<"---</before>---"<<endl;
-    search_strategy->handle(sentence,(void*)&search_result,db_op,start_page,results_per_page,false);
+    search_strategy->handle(sentence,(void*)&search_result,db_op,start_page,results_per_page,true);
     cout<<"---<after>---"<<endl;
-    cout<<"sentence: "<<sentence<<endl;
     cout<<"start_page: "<<start_page<<endl;
     cout<<"results_per_page: "<<results_per_page<<endl;
+    cout<<"sentence: "<<sentence<<endl;
     cout<<"---</after>---"<<endl;
     if(start_page<0||results_per_page<0){
       final_response=http_response_header+"<html><head><title>amigao</title><meta charset='utf-8'><link rel='stylesheet' type='text/css' href='/css/a_link.css'><link rel='stylesheet' type='text/css' href='/css/scrollbar_orange.css'><link rel='stylesheet' type='text/css' href='/css/paging.css'></link> <style> html,body{background-color:#282a36;color:#868686;margin:0;}</style></head><body style='overflow-x:hidden'><h3>sorry,there are no result about:<br></h3>&nbsp;&nbsp;&nbsp;"+sentence+"</body></html>";
       FCGX_FPrintF(out,final_response.c_str());
       continue;
     }
-    string html2body="<html><head><title>amigao</title><meta charset='utf-8'><link rel='stylesheet' type='text/css' href='/css/a_link.css'><link rel='stylesheet' type='text/css' href='/css/scrollbar_orange.css'><link rel='stylesheet' type='text/css' href='/css/paging.css'></link> <style> html,body{background-color:#282a36;color:#868686;margin:0;}</style></head><body style='overflow-x:hidden'><h3 style='text-align:center'>"+sentence+"</h3>";
+    string html2body="<html><head><title>amigao</title><meta charset='utf-8'><link rel='stylesheet' type='text/css' href='/css/a_link.css'><link rel='stylesheet' type='text/css' href='/css/scrollbar_orange.css'><link rel='stylesheet' type='text/css' href='/css/paging.css'></link> <style> html,body{background-color:#282a36;color:#868686;margin:0;}</style><script>function paging(page){window.parent.amigao_paging('"+sentence+"',page,"+to_string(results_per_page)+");}</script></head><body style='overflow-x:hidden'><h3 style='text-align:center'>"+sentence+"</h3>";
     string search_a="";
     for(size_t i=0;i<search_result.size();++i){
       string url=search_result.get_url(i);
@@ -123,22 +123,25 @@ int main(int argc,char**argv){
       if(time.empty())time="#empty";
       search_a+=("<div><a href='http://"+url+"' title='"+url+"' target='_blank' style='font-size:18px'>"+title+"</a>&nbsp;&nbsp;&nbsp;&nbsp;"+time+"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+contents+"...<br><i>"+url+"</i></div><br>");
     }
-    string paging="<div style='text-align:center;'><ul class='paging'><li><a href='pagin(-1)'>«</a></li>";
-    {
-      short i=start_page-DFL_PAGES/2;
-      if(i<1)i=1;
-      short j=i+DFL_PAGES-1;
-      if(j>results_per_page)j=results_per_page;
-      while(i<=j){
-	string str_i=to_string(i);
-	if(i==start_page)
-	  paging+=("<li><a href='#' class='active'>"+str_i+"</a></li>");
-	else
-	  paging+=("<li><a href='paging("+str_i+")'>"+str_i+"</a></li>");
-	++i;
-      }
+    string paging="";
+    short i=start_page-DFL_PAGES/2;
+    short pre=start_page-1,next=start_page+1;
+    if(i<1)i=1;
+    short j=i+DFL_PAGES-1;
+    if(j>results_per_page)j=results_per_page;
+    if(pre<1)pre=results_per_page;
+    if(next>j)next=1;
+    string str_pre=to_string(pre),str_next=to_string(next);
+    paging="<div style='text-align:center;'><ul class='paging'><li><a href='javascript:paging("+str_pre+")'>«</a></li>";
+    while(i<=j){
+      string str_i=to_string(i);
+      if(i==start_page)
+	paging+=("<li><a href='#' class='active'>"+str_i+"</a></li>");
+      else
+	paging+=("<li><a href='javascript:paging("+str_i+")'>"+str_i+"</a></li>");
+      ++i;
     }
-    paging+="<li><a href='paging(0)'>»</a></li></ul></div></body></html>";
+    paging+="<li><a href='javascript:paging("+str_next+")'>»</a></li></ul></div></body></html>";
     final_response=http_response_header+html2body+search_a+paging;
     FCGX_FPrintF(out,final_response.c_str());
   }

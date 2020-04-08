@@ -23,6 +23,7 @@
 #include<unordered_map>
 #include<vector>
 
+#include"values.h"
 #include"interface/valuate_strategy.h"
 #include"utils/ini_parser.hpp"
 #include"utils/cppjieba/Jieba.hpp"
@@ -88,26 +89,31 @@ namespace amigao{
 			std::string &html,
 			DBOperationInterface*db_op)override{
       using namespace std;
-      if(url.size()>2048||!db_op)return;
+      if(url.size()>URL_SIZE||!db_op)return;
       db_op->op_visited_url(url,title,contents,html);
       long cur_url_no;
       if((cur_url_no=db_op->get_url_no(url))==0)
 	return;
-      string cur_str_url_no=to_string(cur_url_no);
+      string cur_str_url_no;
+      stringstream ss;
+      ss<<cur_url_no;
+      ss>>cur_str_url_no;
+      ss.clear();
       MYSQL*mysql=(MYSQL*)db_op->get_db();
       MYSQL_ROW row;
       MYSQL_RES*res=nullptr;
-      const string update_wordno_weight="update reverse set weight= case no ";
-      vector<string>update_wordno_weight_vec;
+      const string update_amigaoreverse_weight="update reverse set weight= case no ";
+      vector<string>update_amigaoreverse_weight_vec;
       {
 	unordered_map<string,unsigned int>wordno_weight;
+	unordered_map<string,string>amigaoreverse_no_weight;
 	string tail="",when_then="",no_in="";
-	const string select_wordno_weight="select no,weight from amigao.reverse where 0>1 ";
-	vector<string>select_wordno_weight_vec;
+	const string select_amigaoreverse_no_weight="select no,weight from amigao.reverse where 0>1 ";
+	vector<string>select_amigaoreverse_no_weight_vec;
 	{
 	  unordered_map<string,unsigned int>word_weight;
-	  vector<string>find_wordno_vec;
-	  const string find_wordno="select no,word from dictionary.word where 0>1 ";
+	  const string select_dictionaryword_no_word="select no,word from dictionary.word where 0>1 ";
+	  vector<string>select_dictionaryword_no_word_vec;
 	  {
 	    vector<string>title_vec;
 	    jieba->CutForSearch(title,title_vec,true);
@@ -117,15 +123,15 @@ namespace amigao{
 		if(e[i]!=' '&&e[i]!='\r'&&e[i]!='\n'&&e[i]!='\t')
 		  tmp_str+=e[i];
 	      tmp_str=crypt(tmp_str);
-	      if(tmp_str.empty()||tmp_str.size()>768)continue;
+	      if(tmp_str.empty()||tmp_str.size()>DB_DICTIONARY_WORD_SIZE)continue;
 	      word_weight[tmp_str]+=10;
-	      if(find_wordno.size()+tail.size()+tmp_str.size()+11>db_op->get_MAX_INSERT()){
-		find_wordno_vec.push_back(tail);
+	      if(select_dictionaryword_no_word.size()+tail.size()+tmp_str.size()+11>db_op->get_MAX_INSERT()){
+		select_dictionaryword_no_word_vec.push_back(tail);
 		tail="";
 	      }
 	      tail+="or word='"+tmp_str+"' ";
 	    }
-	    if(tail.size()>11)find_wordno_vec.push_back(tail);
+	    if(tail.size()>11)select_dictionaryword_no_word_vec.push_back(tail);
 	    tail="";
 	  }
 	  {
@@ -137,19 +143,19 @@ namespace amigao{
 		if(e[i]!=' '&&e[i]!='\r'&&e[i]!='\n'&&e[i]!='\t')
 		  tmp_str+=e[i];
 	      tmp_str=crypt(tmp_str);
-	      if(tmp_str.empty()||tmp_str.size()>768)continue;
+	      if(tmp_str.empty()||tmp_str.size()>DB_DICTIONARY_WORD_SIZE)continue;
 	      ++word_weight[tmp_str];
-	      if(find_wordno.size()+tail.size()+tmp_str.size()+11>db_op->get_MAX_INSERT()){
-		find_wordno_vec.push_back(tail);
+	      if(select_dictionaryword_no_word.size()+tail.size()+tmp_str.size()+11>db_op->get_MAX_INSERT()){
+		select_dictionaryword_no_word_vec.push_back(tail);
 		tail="";
 	      }
 	      tail+="or word='"+tmp_str+"' ";
 	    }
-	    if(tail.size()>11)find_wordno_vec.push_back(tail);
+	    if(tail.size()>11)select_dictionaryword_no_word_vec.push_back(tail);
 	    tail="";
 	  }
-	  for(auto const&e:find_wordno_vec){
-	    if(maria_real_query(mysql,find_wordno+e)||
+	  for(auto const&e:select_dictionaryword_no_word_vec){
+	    if(maria_real_query(mysql,select_dictionaryword_no_word+e)||
 	       !(res=mysql_store_result(mysql))){
 	      cerr<<"---<reverse valuate strategy error>---\nmaria_real_query/mysql_store_result \n---</reverse valuate strategy error>---"<<endl;
 	      exit(1);
@@ -157,8 +163,8 @@ namespace amigao{
 	    while(row=mysql_fetch_row(res)){
 	      string tmp_no=row[0],tmp_word=row[1];
 	      wordno_weight[tmp_no]=word_weight[tmp_word];
-	      if(select_wordno_weight.size()+tail.size()+tmp_no.size()+9>db_op->get_MAX_INSERT()){
-		select_wordno_weight_vec.push_back(tail);
+	      if(select_amigaoreverse_no_weight.size()+tail.size()+tmp_no.size()+9>db_op->get_MAX_INSERT()){
+		select_amigaoreverse_no_weight_vec.push_back(tail);
 		tail="";
 	      }
 	      tail+="or no='"+tmp_no+"' ";
@@ -166,114 +172,128 @@ namespace amigao{
 	    mysql_free_result(res);
 	    res=nullptr;
 	  }
-	  if(tail.size()>9)select_wordno_weight_vec.push_back(tail);
+	  if(tail.size()>9)select_amigaoreverse_no_weight_vec.push_back(tail);
 	  tail="";
 	}
-	auto update_weight=[](string &url_weight_str,string &word_)->void{
+	//wordno_weight: reverse(no)-> weight(unsigned int)
+	//amigaoreverse_no_weight: reverse(no),weight(string,string)
+	auto update_weight=[&](string&amigaoreverse_weight,const string &amigaoreverse_no)->void{
 			     //first find old url node check it whether changed,and remove it
-			     unsigned int cur_weight=wordno_weight[word_];
-			     if(cur_weight==0)
-			       return;
-			     long i=0;
-			     string cur_str_weight="";
-			     stringstream ss;
+			     unsigned int cur_weight=wordno_weight[amigaoreverse_no];
+			     if(!cur_weight)return;
+			     int cur_nums=1;
+			     string cur_weight_str="";
 			     ss<<cur_weight;
-			     ss>>cur_str_weight;
+			     ss>>cur_weight_str;
 			     ss.clear();
-			     string url_node="|"+cur_str_weight+"_"+cur_str_url_no;
-			     long old_url_node=0;
-			     while(i<url_weight_str.size()&&url_weight_str[i]!='|')++i;
-			     if(i>=url_weight_str.size())return;
-			     long first_line=i;
-			     string cur_nums_str=url_weight_str.substr(0,i);
-			     unsigned cur_nums;
-			     ss<<cur_nums_str;
-			     ss>>cur_nums;
-			     ss.clear();
-			     if((old_url_node=url_weight_str.find("_"+cur_str_url_no))!=-1){
-			       long i=old_url_node,j=i;
-			       for(;i>=0&&url_weight_str[i]!='|';--i);
-			       for(;j<url_weight_str.size()&&
-				     url_weight_str[j]!='|';++j);
-			       if(i<url_weight_str.size()&&j>=i&&
-				  url_weight_str.substr(i,j-i).compare(url_node)==0){
-				 return;
-			       }
-			       if(cur_nums==1){
-				 url_weight_str="1"+url_node;
-				 return;
-			       }
-			       if(j==url_weight_str.size()){
-				 url_weight_str=cur_nums_str+url_weight_str.substr(first_line,i-first_line)+url_node;
-				 return;
-			       }
-			       --cur_nums;
-			       ss<<cur_nums;
-			       ss>>cur_nums_str;
+			     string insert_node="|"+cur_weight_str+"_"+cur_str_url_no;
+			     int first_node_sub;
+			     {
+			       int i=0;
+			       while(i<amigaoreverse_weight.size()&&amigaoreverse_weight[i]!='|')++i;
+			       first_node_sub=i;
+			       ss<<(amigaoreverse_weight.substr(0,i));
+			       ss>>cur_nums;
 			       ss.clear();
-			       url_weight_str=cur_nums_str+url_weight_str.substr(first_line,i-first_line);			       
 			     }
-			     for(long j;i<url_weight_str.size();++i){
-			       if(url_weight_str[i]=='|')j=i+1;
-			       else if(url_weight_str[i]=='_'){
-				 if(j>=url_weight_str.size()||i<=j||j==0)return;
-				 long tmp_weight;
-				 ss<<url_weight_str.substr(j,i-j);
-				 ss>>tmp_weight;
-				 ss.clear();
-				 if(cur_weight>=tmp_weight){
-				   bool full=false;
-				   if(cur_nums<MAX_URLS){
-				     ++cur_nums;
-				   }else
-				     full=true;
-				   ss<<cur_nums;
-				   ss>>cur_nums_str;
-				   ss.clear();
-				   string head;
-				   int i1=i;
-				   if(j-1==first_line)
-				     head=cur_nums_str+url_node;
+			     {
+			       string tmp_str="_"+cur_str_url_no+"|";
+			       int pos=amigaoreverse_weight.find(tmp_str);
+			       if(pos<0){
+				 int i=amigaoreverse_weight.size()-1;
+				 while(amigaoreverse_weight[i]!='_')--i;
+				 if(amigaoreverse_weight.substr(i+1,amigaoreverse_weight.size()).compare(cur_str_url_no)==0)pos=i;
+			       }
+			       if(pos>=0){
+				 if(cur_nums==1){
+				   amigaoreverse_weight="1"+insert_node;return;
+				 }
+				 int i=first_node_sub+1;
+				 while(amigaoreverse_weight[i]!='_')++i;
+				 
+				 --cur_nums;
+				 string tmp_nums="";
+				 ss<<cur_nums;ss>>tmp_nums;ss.clear();
+				 if(i==pos){
+				   while(i<amigaoreverse_weight.size()&&amigaoreverse_weight[i]!='|')++i;
+				   amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(i,amigaoreverse_weight.size());
+				 }else{
+				   int i=pos-1;
+				   while(amigaoreverse_weight[i]!='|')--i;
+				   int j=pos+1;
+				   while(j<amigaoreverse_weight.size()&&amigaoreverse_weight[j]!='|')++j;
+				   if(j>=amigaoreverse_weight.size())
+				     amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(first_node_sub,i-first_node_sub);
 				   else
-				     head=cur_nums_str+url_weight_str.substr(first_line,j-1-first_line)+url_node;
-				   if(!full){
-				     url_weight_str=head+url_weight_str.substr(j-1,url_weight_str.size());
-				   }
-				   else{
-				     long l_tail=url_weight_str.size()-1;
-				     while(l_tail>=0&&url_weight_str[l_tail]!='|')--l_tail;
-				     if(l_tail>=0&&url_weight_str[l_tail]=='|'&&l_tail>=j-1){
-				       if(l_tail==j-1)
-					 url_weight_str=head;
-				       else
-					 url_weight_str=head+url_weight_str.substr(j-1,l_tail-j+1);
-				     }
-				     else return;
-				   }
-				   break;
+				     amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(first_node_sub,i-first_node_sub)+amigaoreverse_weight.substr(j,amigaoreverse_weight.size());
 				 }
 			       }
 			     }
-			     if(i==url_weight_str.size()&&cur_nums<MAX_URLS){
+			     int pre=first_node_sub,p=pre+1,next=p+1;
+			     while(next<amigaoreverse_weight.size()&&amigaoreverse_weight[next]!='_')++next;
+			     string node_w=amigaoreverse_weight.substr(p,next-p);
+			     if(cur_weight_str>=node_w){
+			       if(cur_nums>=MAX_URLS){
+				 int i=amigaoreverse_weight.size()-1;
+				 while(amigaoreverse_weight[i]!='|')--i;
+				 amigaoreverse_weight=amigaoreverse_weight.substr(0,first_node_sub)+insert_node+amigaoreverse_weight.substr(first_node_sub,i-first_node_sub);
+				 return;
+			       }
+			       string tmp_nums="";
 			       ++cur_nums;
-			       ss<<cur_nums;
-			       ss>>cur_nums_str;
-			       ss.clear();
-			       url_weight_str=cur_nums_str+url_weight_str.substr(first_line,url_weight_str.size())+url_node;
+			       ss<<cur_nums;ss>>tmp_nums;ss.clear();
+			       amigaoreverse_weight=tmp_nums+insert_node+amigaoreverse_weight.substr(first_node_sub,amigaoreverse_weight.size());
+			       return;
+			     }
+			     while(next<amigaoreverse_weight.size()&&amigaoreverse_weight[next]!='|')++next;
+			     if(next>=amigaoreverse_weight.size()){
+			       string tmp_nums="";
+			       ++cur_nums;
+			       ss<<cur_nums;ss>>tmp_nums;ss.clear();
+			       amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(first_node_sub,amigaoreverse_weight.size())+insert_node;return;
+			     }
+			     while(next<amigaoreverse_weight.size()&&node_w>cur_weight_str){
+			       pre=next;p=next+1;next=p+1;
+			       while(amigaoreverse_weight[next]!='_')++next;
+			       node_w=amigaoreverse_weight.substr(p,next-p);
+			       while(next<amigaoreverse_weight.size()&&amigaoreverse_weight[next]!='|')++next;
+			     }
+			     if(cur_weight_str>=node_w){
+			       if(cur_nums<MAX_URLS){
+				 ++cur_nums;string tmp_nums="";
+				 ss<<cur_nums;ss>>tmp_nums;ss.clear();
+				 amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(first_node_sub,pre-first_node_sub)+insert_node+amigaoreverse_weight.substr(pre,amigaoreverse_weight.size());
+				 return;		 
+			       }
+			       if(next>=amigaoreverse_weight.size()){
+				 amigaoreverse_weight=amigaoreverse_weight.substr(0,pre)+insert_node;return;				 
+			       }
+			       int i=amigaoreverse_weight.size()-1;
+			       while(amigaoreverse_weight[i]!='|')--i;
+			       amigaoreverse_weight=amigaoreverse_weight.substr(0,pre)+insert_node+amigaoreverse_weight.substr(pre,i-pre);return;
+			     }else{
+			       if(cur_nums<MAX_URLS){
+				 ++cur_nums;string tmp_nums="";
+				 ss<<cur_nums;ss>>tmp_nums;ss.clear();
+				 amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(first_node_sub,amigaoreverse_weight.size())+insert_node;
+				 return;
+			       }
+			       return;
 			     }
 			   };
-	for(auto const&e:select_wordno_weight_vec){
-	  if(maria_real_query(mysql,select_wordno_weight+e)||!(res=mysql_store_result(mysql))){
+	//update_amigaoreverse_weight(vec)
+	for(auto const&e:select_amigaoreverse_no_weight_vec){
+	  if(maria_real_query(mysql,select_amigaoreverse_no_weight+e)||!(res=mysql_store_result(mysql))){
 	    cerr<<"---<reverse valuate strategy error>---\nmaria_real_query/mysql_store_result \n---</reverse valuate strategy error>---"<<endl;
 	    exit(1);
 	  }
 	  while(row=mysql_fetch_row(res)){
 	    string tmp_weight=row[1],tmp_no=row[0];
 	    update_weight(tmp_weight,tmp_no);
-	    if(when_then.size()+37+no_in.size()+2*tmp_no.size()+tmp_weight.size()>db_op->get_MAX_INSERT()&&tmp_no.size()>0){
-	      string tmp_str=when_then+" end where no in ("+no_in.substr(0,no_in.size()-1)+")";
-	      update_wordno_weight_vec.push_back(tmp_str);
-	      when_then=no_in="";
+	    if(tmp_no.size()>0&&when_then.size()+37+no_in.size()+2*tmp_no.size()+tmp_weight.size()>db_op->get_MAX_INSERT()){
+	      tail=when_then+" end where no in ("+no_in.substr(0,no_in.size()-1)+")";
+	      update_amigaoreverse_weight_vec.push_back(tail);
+	      tail=when_then=no_in="";
 	    }
 	    when_then+=("when '"+tmp_no+"' then '"+tmp_weight+"' ");
 	    no_in+=("'"+tmp_no+"',");
@@ -282,16 +302,16 @@ namespace amigao{
 	  res=nullptr;
 	}
 	if(no_in.size()>3){
-	  string tmp_str=when_then+" end where no in ("+no_in.substr(0,no_in.size()-1)+")";
-	  update_wordno_weight_vec.push_back(tmp_str);
+	  tail=when_then+" end where no in ("+no_in.substr(0,no_in.size()-1)+")";
+	  update_amigaoreverse_weight_vec.push_back(tail);
 	}
+	tail="";
       }
-      for(auto const&e:update_wordno_weight_vec){
-	if(maria_real_query(mysql,update_wordno_weight+e)){
+      for(auto const&e:update_amigaoreverse_weight_vec)
+	if(maria_real_query(mysql,update_amigaoreverse_weight+e)){
 	  cerr<<"---<reverse valuate strategy error>---\nmaria_real_query/mysql_store_result \n---</reverse valuate strategy error>---"<<endl;
 	  exit(1);	     
 	}
-      }
       db_op->recycle_db((void*)mysql);
     }
     ~ReverseValuateStrategy(){

@@ -6,3 +6,13 @@
 
 #IncludeRegexTransform: 
 
+/home/ydssbbnc/do/document/source/prj/amigao/src/utils/gbk2utf8.cc
+stdlib.h
+-
+string.h
+-
+iconv.h
+-
+string
+-
+

@@ -6,3 +6,13 @@
 
 #IncludeRegexTransform: 
 
+../src/values.h
+unistd.h
+-
+
+/home/ydssbbnc/do/document/source/prj/amigao/src/utils/format_url.cc
+string
+-
+values.h
+/home/ydssbbnc/do/document/source/prj/amigao/src/utils/values.h
+

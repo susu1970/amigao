@@ -56,6 +56,7 @@ CMAKE_BINARY_DIR = /home/ydssbbnc/do/document/source/prj/amigao/build
 all: manager_bin/all
 all: bin/all
 all: utils_lib/all
+all: test/all
 
 .PHONY : all
 
@@ -63,6 +64,7 @@ all: utils_lib/all
 preinstall: manager_bin/preinstall
 preinstall: bin/preinstall
 preinstall: utils_lib/preinstall
+preinstall: test/preinstall
 
 .PHONY : preinstall
 
@@ -70,6 +72,7 @@ preinstall: utils_lib/preinstall
 clean: manager_bin/clean
 clean: bin/clean
 clean: utils_lib/clean
+clean: test/clean
 
 .PHONY : clean
 
@@ -98,7 +101,7 @@ bin/clean: bin/http/clean
 # Directory level rules for directory bin/http
 
 # Recursive "all" directory target.
-bin/http/all:
+bin/http/all: bin/http/CMakeFiles/search_server.dir/all
 
 .PHONY : bin/http/all
 
@@ -108,7 +111,7 @@ bin/http/preinstall:
 .PHONY : bin/http/preinstall
 
 # Recursive "clean" directory target.
-bin/http/clean:
+bin/http/clean: bin/http/CMakeFiles/search_server.dir/clean
 
 .PHONY : bin/http/clean
 
@@ -157,15 +160,33 @@ manager_bin/clean: manager_bin/CMakeFiles/add_dict_table_from_file.dir/clean
 .PHONY : manager_bin/clean
 
 #=============================================================================
+# Directory level rules for directory test
+
+# Recursive "all" directory target.
+test/all: test/CMakeFiles/plain_search_strategy_test.dir/all
+
+.PHONY : test/all
+
+# Recursive "preinstall" directory target.
+test/preinstall:
+
+.PHONY : test/preinstall
+
+# Recursive "clean" directory target.
+test/clean: test/CMakeFiles/plain_search_strategy_test.dir/clean
+
+.PHONY : test/clean
+
+#=============================================================================
 # Directory level rules for directory utils_lib
 
 # Recursive "all" directory target.
-utils_lib/all: utils_lib/CMakeFiles/str2sum.dir/all
 utils_lib/all: utils_lib/CMakeFiles/maria_op.dir/all
 utils_lib/all: utils_lib/CMakeFiles/crypt_string.dir/all
 utils_lib/all: utils_lib/CMakeFiles/gbk2utf8.dir/all
 utils_lib/all: utils_lib/CMakeFiles/parse_url.dir/all
 utils_lib/all: utils_lib/CMakeFiles/escape_url.dir/all
+utils_lib/all: utils_lib/CMakeFiles/str2html.dir/all
 utils_lib/all: utils_lib/CMakeFiles/parse_html.dir/all
 utils_lib/all: utils_lib/CMakeFiles/format_url.dir/all
 
@@ -177,12 +198,12 @@ utils_lib/preinstall:
 .PHONY : utils_lib/preinstall
 
 # Recursive "clean" directory target.
-utils_lib/clean: utils_lib/CMakeFiles/str2sum.dir/clean
 utils_lib/clean: utils_lib/CMakeFiles/maria_op.dir/clean
 utils_lib/clean: utils_lib/CMakeFiles/crypt_string.dir/clean
 utils_lib/clean: utils_lib/CMakeFiles/gbk2utf8.dir/clean
 utils_lib/clean: utils_lib/CMakeFiles/parse_url.dir/clean
 utils_lib/clean: utils_lib/CMakeFiles/escape_url.dir/clean
+utils_lib/clean: utils_lib/CMakeFiles/str2html.dir/clean
 utils_lib/clean: utils_lib/CMakeFiles/parse_html.dir/clean
 utils_lib/clean: utils_lib/CMakeFiles/format_url.dir/clean
 
@@ -196,7 +217,7 @@ manager_bin/CMakeFiles/tmp.dir/all: utils_lib/CMakeFiles/maria_op.dir/all
 manager_bin/CMakeFiles/tmp.dir/all: utils_lib/CMakeFiles/crypt_string.dir/all
 	$(MAKE) -f manager_bin/CMakeFiles/tmp.dir/build.make manager_bin/CMakeFiles/tmp.dir/depend
 	$(MAKE) -f manager_bin/CMakeFiles/tmp.dir/build.make manager_bin/CMakeFiles/tmp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles --progress-num=27,28 "Built target tmp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles --progress-num=31,32 "Built target tmp"
 .PHONY : manager_bin/CMakeFiles/tmp.dir/all
 
 # Build rule for subdir invocation for target.
@@ -365,31 +386,34 @@ bin/spider/CMakeFiles/master.dir/clean:
 .PHONY : bin/spider/CMakeFiles/master.dir/clean
 
 #=============================================================================
-# Target rules for target utils_lib/CMakeFiles/str2sum.dir
+# Target rules for target bin/http/CMakeFiles/search_server.dir
 
 # All Build rule for target.
-utils_lib/CMakeFiles/str2sum.dir/all:
-	$(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/depend
-	$(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles --progress-num=25,26 "Built target str2sum"
-.PHONY : utils_lib/CMakeFiles/str2sum.dir/all
+bin/http/CMakeFiles/search_server.dir/all: utils_lib/CMakeFiles/maria_op.dir/all
+bin/http/CMakeFiles/search_server.dir/all: utils_lib/CMakeFiles/crypt_string.dir/all
+bin/http/CMakeFiles/search_server.dir/all: utils_lib/CMakeFiles/escape_url.dir/all
+bin/http/CMakeFiles/search_server.dir/all: utils_lib/CMakeFiles/str2html.dir/all
+	$(MAKE) -f bin/http/CMakeFiles/search_server.dir/build.make bin/http/CMakeFiles/search_server.dir/depend
+	$(MAKE) -f bin/http/CMakeFiles/search_server.dir/build.make bin/http/CMakeFiles/search_server.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles --progress-num=27,28 "Built target search_server"
+.PHONY : bin/http/CMakeFiles/search_server.dir/all
 
 # Build rule for subdir invocation for target.
-utils_lib/CMakeFiles/str2sum.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/str2sum.dir/all
+bin/http/CMakeFiles/search_server.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 10
+	$(MAKE) -f CMakeFiles/Makefile2 bin/http/CMakeFiles/search_server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 0
-.PHONY : utils_lib/CMakeFiles/str2sum.dir/rule
+.PHONY : bin/http/CMakeFiles/search_server.dir/rule
 
 # Convenience name for target.
-str2sum: utils_lib/CMakeFiles/str2sum.dir/rule
+search_server: bin/http/CMakeFiles/search_server.dir/rule
 
-.PHONY : str2sum
+.PHONY : search_server
 
 # clean rule for target.
-utils_lib/CMakeFiles/str2sum.dir/clean:
-	$(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/clean
-.PHONY : utils_lib/CMakeFiles/str2sum.dir/clean
+bin/http/CMakeFiles/search_server.dir/clean:
+	$(MAKE) -f bin/http/CMakeFiles/search_server.dir/build.make bin/http/CMakeFiles/search_server.dir/clean
+.PHONY : bin/http/CMakeFiles/search_server.dir/clean
 
 #=============================================================================
 # Target rules for target utils_lib/CMakeFiles/maria_op.dir
@@ -527,6 +551,33 @@ utils_lib/CMakeFiles/escape_url.dir/clean:
 .PHONY : utils_lib/CMakeFiles/escape_url.dir/clean
 
 #=============================================================================
+# Target rules for target utils_lib/CMakeFiles/str2html.dir
+
+# All Build rule for target.
+utils_lib/CMakeFiles/str2html.dir/all:
+	$(MAKE) -f utils_lib/CMakeFiles/str2html.dir/build.make utils_lib/CMakeFiles/str2html.dir/depend
+	$(MAKE) -f utils_lib/CMakeFiles/str2html.dir/build.make utils_lib/CMakeFiles/str2html.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles --progress-num=29,30 "Built target str2html"
+.PHONY : utils_lib/CMakeFiles/str2html.dir/all
+
+# Build rule for subdir invocation for target.
+utils_lib/CMakeFiles/str2html.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/str2html.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 0
+.PHONY : utils_lib/CMakeFiles/str2html.dir/rule
+
+# Convenience name for target.
+str2html: utils_lib/CMakeFiles/str2html.dir/rule
+
+.PHONY : str2html
+
+# clean rule for target.
+utils_lib/CMakeFiles/str2html.dir/clean:
+	$(MAKE) -f utils_lib/CMakeFiles/str2html.dir/build.make utils_lib/CMakeFiles/str2html.dir/clean
+.PHONY : utils_lib/CMakeFiles/str2html.dir/clean
+
+#=============================================================================
 # Target rules for target utils_lib/CMakeFiles/parse_html.dir
 
 # All Build rule for target.
@@ -579,6 +630,34 @@ format_url: utils_lib/CMakeFiles/format_url.dir/rule
 utils_lib/CMakeFiles/format_url.dir/clean:
 	$(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/clean
 .PHONY : utils_lib/CMakeFiles/format_url.dir/clean
+
+#=============================================================================
+# Target rules for target test/CMakeFiles/plain_search_strategy_test.dir
+
+# All Build rule for target.
+test/CMakeFiles/plain_search_strategy_test.dir/all: utils_lib/CMakeFiles/maria_op.dir/all
+test/CMakeFiles/plain_search_strategy_test.dir/all: utils_lib/CMakeFiles/crypt_string.dir/all
+	$(MAKE) -f test/CMakeFiles/plain_search_strategy_test.dir/build.make test/CMakeFiles/plain_search_strategy_test.dir/depend
+	$(MAKE) -f test/CMakeFiles/plain_search_strategy_test.dir/build.make test/CMakeFiles/plain_search_strategy_test.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles --progress-num=25,26 "Built target plain_search_strategy_test"
+.PHONY : test/CMakeFiles/plain_search_strategy_test.dir/all
+
+# Build rule for subdir invocation for target.
+test/CMakeFiles/plain_search_strategy_test.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/plain_search_strategy_test.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles 0
+.PHONY : test/CMakeFiles/plain_search_strategy_test.dir/rule
+
+# Convenience name for target.
+plain_search_strategy_test: test/CMakeFiles/plain_search_strategy_test.dir/rule
+
+.PHONY : plain_search_strategy_test
+
+# clean rule for target.
+test/CMakeFiles/plain_search_strategy_test.dir/clean:
+	$(MAKE) -f test/CMakeFiles/plain_search_strategy_test.dir/build.make test/CMakeFiles/plain_search_strategy_test.dir/clean
+.PHONY : test/CMakeFiles/plain_search_strategy_test.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

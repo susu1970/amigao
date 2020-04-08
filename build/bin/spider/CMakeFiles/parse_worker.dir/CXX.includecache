@@ -77,6 +77,8 @@ unordered_map
 -
 vector
 -
+values.h
+../src/strategy/values.h
 interface/valuate_strategy.h
 ../src/strategy/interface/valuate_strategy.h
 utils/ini_parser.hpp
@@ -373,12 +375,6 @@ unistd.h
 -
 
 /home/ydssbbnc/do/document/source/prj/amigao/src/spider/parse_worker.cc
-shmctrl.h
-/home/ydssbbnc/do/document/source/prj/amigao/src/spider/shmctrl.h
-strategy/reverse_valuate_strategy.hpp
-/home/ydssbbnc/do/document/source/prj/amigao/src/spider/strategy/reverse_valuate_strategy.hpp
-db/sql_db_operation.hpp
-/home/ydssbbnc/do/document/source/prj/amigao/src/spider/db/sql_db_operation.hpp
 cstring
 -
 string
@@ -413,6 +409,14 @@ netdb.h
 -
 fcntl.h
 -
+fstream
+-
+shmctrl.h
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/shmctrl.h
+strategy/reverse_valuate_strategy.hpp
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/strategy/reverse_valuate_strategy.hpp
+db/sql_db_operation.hpp
+/home/ydssbbnc/do/document/source/prj/amigao/src/spider/db/sql_db_operation.hpp
 
 /home/ydssbbnc/do/document/source/prj/amigao/src/spider/shmctrl.h
 values.h

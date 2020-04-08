@@ -42,6 +42,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/ydssbbnc/do/document/source/prj/amigao/build/manager_bin/cmake_install.cmake")
   include("/home/ydssbbnc/do/document/source/prj/amigao/build/bin/cmake_install.cmake")
   include("/home/ydssbbnc/do/document/source/prj/amigao/build/utils_lib/cmake_install.cmake")
+  include("/home/ydssbbnc/do/document/source/prj/amigao/build/test/cmake_install.cmake")
 
 endif()
 

@@ -94,6 +94,10 @@ int main(int argc,char**argv){
 	getline(ifs,buf);
 	ifs.close();
 	if(!buf.empty()){
+	  size_t i=0;
+	  for(;i<buf.size();++i)
+	    work_url[i]=buf[i];
+	  if(i<URL_SIZE)work_url[i]='\0';
 	  string sed_rm="sed -i '1,1d' "+read_url;
 	  system(sed_rm.c_str());
 	  pthread_mutex_unlock(&(shmptr->url_lists_lock));
@@ -207,8 +211,7 @@ int main(int argc,char**argv){
       get_links_contents(output->root,links,contents);
       gumbo_destroy_output(&kGumboDefaultOptions,output);
       links.erase(work_url);
-      string html_="";
-      db_op->valuate_page(work_url,title,contents,html_,valuate_strategy);
+      db_op->valuate_page(work_url,title,contents,formated_html,valuate_strategy);
       for(auto iter=links.begin();iter!=links.end();){
 	string tmp_url=*iter;
 	if(db_op->get_website_nice(tmp_url)==0||
@@ -267,8 +270,7 @@ int main(int argc,char**argv){
       get_links_contents(output->root,links,contents);
       gumbo_destroy_output(&kGumboDefaultOptions,output);
       links.erase(work_url);
-      string html_="";
-      db_op->valuate_page(work_url,title,contents,html_,valuate_strategy);
+      db_op->valuate_page(work_url,title,contents,formated_html,valuate_strategy);
       for(auto iter=links.begin();iter!=links.end();){
 	string tmp_url=*iter;
 	if(db_op->get_website_nice(tmp_url)==0||

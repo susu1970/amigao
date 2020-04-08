@@ -79,6 +79,7 @@ plain_search_strategy_test_EXTERNAL_OBJECTS =
 
 test/plain_search_strategy_test: test/CMakeFiles/plain_search_strategy_test.dir/plain_search_strategy.cc.o
 test/plain_search_strategy_test: test/CMakeFiles/plain_search_strategy_test.dir/build.make
+test/plain_search_strategy_test: utils_lib/libmaria_op.a
 test/plain_search_strategy_test: utils_lib/libcrypt_string.a
 test/plain_search_strategy_test: test/CMakeFiles/plain_search_strategy_test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable plain_search_strategy_test"

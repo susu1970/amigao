@@ -5,6 +5,9 @@
 
 static const int WORKERS=sysconf(_SC_NPROCESSORS_CONF);
 
+#define DB_DICTIONARY_WORD_SIZE 768
+#define REVERSE_VALUATE_STRATEGY_WORD_SIZE 255
+
 #define URL_SIZE 2048//the maximum size of url address
 #define HTML_SIZE 1048576//the maximum size of html page
 

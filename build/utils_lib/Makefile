@@ -78,6 +78,17 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # The main all target
 all: cmake_check_build_system
 	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles /home/ydssbbnc/do/document/source/prj/amigao/build/utils_lib/CMakeFiles/progress.marks
@@ -109,21 +120,6 @@ preinstall/fast:
 depend:
 	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-# Convenience name for target.
-utils_lib/CMakeFiles/str2sum.dir/rule:
-	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/str2sum.dir/rule
-.PHONY : utils_lib/CMakeFiles/str2sum.dir/rule
-
-# Convenience name for target.
-str2sum: utils_lib/CMakeFiles/str2sum.dir/rule
-
-.PHONY : str2sum
-
-# fast build rule for target.
-str2sum/fast:
-	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/build
-.PHONY : str2sum/fast
 
 # Convenience name for target.
 utils_lib/CMakeFiles/maria_op.dir/rule:
@@ -199,6 +195,21 @@ escape_url: utils_lib/CMakeFiles/escape_url.dir/rule
 escape_url/fast:
 	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/escape_url.dir/build.make utils_lib/CMakeFiles/escape_url.dir/build
 .PHONY : escape_url/fast
+
+# Convenience name for target.
+utils_lib/CMakeFiles/str2html.dir/rule:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 utils_lib/CMakeFiles/str2html.dir/rule
+.PHONY : utils_lib/CMakeFiles/str2html.dir/rule
+
+# Convenience name for target.
+str2html: utils_lib/CMakeFiles/str2html.dir/rule
+
+.PHONY : str2html
+
+# fast build rule for target.
+str2html/fast:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2html.dir/build.make utils_lib/CMakeFiles/str2html.dir/build
+.PHONY : str2html/fast
 
 # Convenience name for target.
 utils_lib/CMakeFiles/parse_html.dir/rule:
@@ -419,32 +430,32 @@ parse_url.cc.s:
 	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/parse_url.dir/build.make utils_lib/CMakeFiles/parse_url.dir/parse_url.cc.s
 .PHONY : parse_url.cc.s
 
-str2sum.o: str2sum.cc.o
+str2html.o: str2html.cc.o
 
-.PHONY : str2sum.o
+.PHONY : str2html.o
 
 # target to build an object file
-str2sum.cc.o:
-	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/str2sum.cc.o
-.PHONY : str2sum.cc.o
+str2html.cc.o:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2html.dir/build.make utils_lib/CMakeFiles/str2html.dir/str2html.cc.o
+.PHONY : str2html.cc.o
 
-str2sum.i: str2sum.cc.i
+str2html.i: str2html.cc.i
 
-.PHONY : str2sum.i
+.PHONY : str2html.i
 
 # target to preprocess a source file
-str2sum.cc.i:
-	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/str2sum.cc.i
-.PHONY : str2sum.cc.i
+str2html.cc.i:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2html.dir/build.make utils_lib/CMakeFiles/str2html.dir/str2html.cc.i
+.PHONY : str2html.cc.i
 
-str2sum.s: str2sum.cc.s
+str2html.s: str2html.cc.s
 
-.PHONY : str2sum.s
+.PHONY : str2html.s
 
 # target to generate assembly for a file
-str2sum.cc.s:
-	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/str2sum.cc.s
-.PHONY : str2sum.cc.s
+str2html.cc.s:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f utils_lib/CMakeFiles/str2html.dir/build.make utils_lib/CMakeFiles/str2html.dir/str2html.cc.s
+.PHONY : str2html.cc.s
 
 # Help Target
 help:
@@ -453,13 +464,14 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... str2sum"
 	@echo "... maria_op"
 	@echo "... crypt_string"
 	@echo "... gbk2utf8"
 	@echo "... parse_url"
 	@echo "... escape_url"
 	@echo "... edit_cache"
+	@echo "... test"
+	@echo "... str2html"
 	@echo "... parse_html"
 	@echo "... format_url"
 	@echo "... crypt_string.o"
@@ -483,9 +495,9 @@ help:
 	@echo "... parse_url.o"
 	@echo "... parse_url.i"
 	@echo "... parse_url.s"
-	@echo "... str2sum.o"
-	@echo "... str2sum.i"
-	@echo "... str2sum.s"
+	@echo "... str2html.o"
+	@echo "... str2html.i"
+	@echo "... str2html.s"
 .PHONY : help
 
 

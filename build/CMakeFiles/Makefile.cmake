@@ -16,6 +16,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../src/http/CMakeLists.txt"
   "../src/spider/CMakeLists.txt"
   "../src/utils/CMakeLists.txt"
+  "../test/CMakeLists.txt"
   "/usr/share/cmake-3.16/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
@@ -51,6 +52,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "bin/spider/CMakeFiles/CMakeDirectoryInformation.cmake"
   "bin/http/CMakeFiles/CMakeDirectoryInformation.cmake"
   "utils_lib/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "test/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -61,12 +63,14 @@ set(CMAKE_DEPEND_INFO_FILES
   "bin/spider/CMakeFiles/crawl_worker.dir/DependInfo.cmake"
   "bin/spider/CMakeFiles/parse_worker.dir/DependInfo.cmake"
   "bin/spider/CMakeFiles/master.dir/DependInfo.cmake"
-  "utils_lib/CMakeFiles/str2sum.dir/DependInfo.cmake"
+  "bin/http/CMakeFiles/search_server.dir/DependInfo.cmake"
   "utils_lib/CMakeFiles/maria_op.dir/DependInfo.cmake"
   "utils_lib/CMakeFiles/crypt_string.dir/DependInfo.cmake"
   "utils_lib/CMakeFiles/gbk2utf8.dir/DependInfo.cmake"
   "utils_lib/CMakeFiles/parse_url.dir/DependInfo.cmake"
   "utils_lib/CMakeFiles/escape_url.dir/DependInfo.cmake"
+  "utils_lib/CMakeFiles/str2html.dir/DependInfo.cmake"
   "utils_lib/CMakeFiles/parse_html.dir/DependInfo.cmake"
   "utils_lib/CMakeFiles/format_url.dir/DependInfo.cmake"
+  "test/CMakeFiles/plain_search_strategy_test.dir/DependInfo.cmake"
   )

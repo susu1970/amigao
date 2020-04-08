@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/ydssbbnc/do/document/source/prj/amigao/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,28 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -110,14 +121,61 @@ depend:
 	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+bin/http/CMakeFiles/search_server.dir/rule:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f CMakeFiles/Makefile2 bin/http/CMakeFiles/search_server.dir/rule
+.PHONY : bin/http/CMakeFiles/search_server.dir/rule
+
+# Convenience name for target.
+search_server: bin/http/CMakeFiles/search_server.dir/rule
+
+.PHONY : search_server
+
+# fast build rule for target.
+search_server/fast:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/http/CMakeFiles/search_server.dir/build.make bin/http/CMakeFiles/search_server.dir/build
+.PHONY : search_server/fast
+
+search_server.o: search_server.cc.o
+
+.PHONY : search_server.o
+
+# target to build an object file
+search_server.cc.o:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/http/CMakeFiles/search_server.dir/build.make bin/http/CMakeFiles/search_server.dir/search_server.cc.o
+.PHONY : search_server.cc.o
+
+search_server.i: search_server.cc.i
+
+.PHONY : search_server.i
+
+# target to preprocess a source file
+search_server.cc.i:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/http/CMakeFiles/search_server.dir/build.make bin/http/CMakeFiles/search_server.dir/search_server.cc.i
+.PHONY : search_server.cc.i
+
+search_server.s: search_server.cc.s
+
+.PHONY : search_server.s
+
+# target to generate assembly for a file
+search_server.cc.s:
+	cd /home/ydssbbnc/do/document/source/prj/amigao/build && $(MAKE) -f bin/http/CMakeFiles/search_server.dir/build.make bin/http/CMakeFiles/search_server.dir/search_server.cc.s
+.PHONY : search_server.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test"
+	@echo "... rebuild_cache"
+	@echo "... search_server"
+	@echo "... search_server.o"
+	@echo "... search_server.i"
+	@echo "... search_server.s"
 .PHONY : help
 
 

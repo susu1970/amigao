@@ -78,6 +78,17 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles /home/ydssbbnc/do/document/source/prj/amigao/build/CMakeFiles/progress.marks
@@ -189,17 +200,17 @@ master/fast:
 .PHONY : master/fast
 
 #=============================================================================
-# Target rules for targets named str2sum
+# Target rules for targets named search_server
 
 # Build rule for target.
-str2sum: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 str2sum
-.PHONY : str2sum
+search_server: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 search_server
+.PHONY : search_server
 
 # fast build rule for target.
-str2sum/fast:
-	$(MAKE) -f utils_lib/CMakeFiles/str2sum.dir/build.make utils_lib/CMakeFiles/str2sum.dir/build
-.PHONY : str2sum/fast
+search_server/fast:
+	$(MAKE) -f bin/http/CMakeFiles/search_server.dir/build.make bin/http/CMakeFiles/search_server.dir/build
+.PHONY : search_server/fast
 
 #=============================================================================
 # Target rules for targets named maria_op
@@ -267,6 +278,19 @@ escape_url/fast:
 .PHONY : escape_url/fast
 
 #=============================================================================
+# Target rules for targets named str2html
+
+# Build rule for target.
+str2html: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 str2html
+.PHONY : str2html
+
+# fast build rule for target.
+str2html/fast:
+	$(MAKE) -f utils_lib/CMakeFiles/str2html.dir/build.make utils_lib/CMakeFiles/str2html.dir/build
+.PHONY : str2html/fast
+
+#=============================================================================
 # Target rules for targets named parse_html
 
 # Build rule for target.
@@ -292,6 +316,19 @@ format_url/fast:
 	$(MAKE) -f utils_lib/CMakeFiles/format_url.dir/build.make utils_lib/CMakeFiles/format_url.dir/build
 .PHONY : format_url/fast
 
+#=============================================================================
+# Target rules for targets named plain_search_strategy_test
+
+# Build rule for target.
+plain_search_strategy_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 plain_search_strategy_test
+.PHONY : plain_search_strategy_test
+
+# fast build rule for target.
+plain_search_strategy_test/fast:
+	$(MAKE) -f test/CMakeFiles/plain_search_strategy_test.dir/build.make test/CMakeFiles/plain_search_strategy_test.dir/build
+.PHONY : plain_search_strategy_test/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -300,20 +337,23 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test"
 	@echo "... tmp"
 	@echo "... add_dict_table_from_file"
 	@echo "... monitor"
 	@echo "... crawl_worker"
 	@echo "... parse_worker"
 	@echo "... master"
-	@echo "... str2sum"
+	@echo "... search_server"
 	@echo "... maria_op"
 	@echo "... crypt_string"
 	@echo "... gbk2utf8"
 	@echo "... parse_url"
 	@echo "... escape_url"
+	@echo "... str2html"
 	@echo "... parse_html"
 	@echo "... format_url"
+	@echo "... plain_search_strategy_test"
 .PHONY : help
 
 

@@ -30,6 +30,7 @@
 #include<iostream>
 #include<fstream>
 #include<sys/wait.h>
+#include<stdlib.h>
 #include<unordered_map>
 
 using namespace std;
@@ -60,17 +61,22 @@ void print_shmctrl(){
 }
 
 int main(int argc,char**argv){
-  if(argc!=5&&argc!=6)
-    cerr<<"usage: <"<<argv[0]<<"> <db conf path> /<start url> <read_url > <write url> <cppjieba_dict> ",exit(1);
+  if(argc!=6&&argc!=7)
+    cerr<<"usage: <"<<argv[0]<<"> <db conf path> /<start url> <read_url > <write url> <cppjieba_dict> <time path>",exit(1);
   if(URL_NUMS<2||HTML_NUMS<2)
     cerr<<"------<master URL_NUMS or HTML_NUMS should more than 1/>-------"<<endl,exit(1);
   cout<<"---<master pid: "<<getpid()<<"/>---"<<endl;
+  {
+    string cmd=argv[6];
+    cmd="date > "+cmd;
+    system(cmd.c_str());    
+  }
   atexit(at_exit);
   string db_conf_path=argv[1];
-  string read_url=argc>5?argv[3]:argv[2];
+  string read_url=argc>6?argv[3]:argv[2];
   amigao::DBOperationInterface*db_op=new amigao::SqlDBOperation(db_conf_path);
-  write_url=argc>5?argv[4]:argv[3];
-  string cppjieba_conf_path=argc>5?argv[5]:argv[4];
+  write_url=argc>6?argv[4]:argv[3];
+  string cppjieba_conf_path=argc>6?argv[5]:argv[4];
   key_t shm_key=ftok("./master",0);
   if((shmid=shmget(shm_key,sizeof(shmctrl),0777|IPC_CREAT|IPC_EXCL))<0)
     syslog(LOG_ERR,"-----------<master shmid error/>-----------"),exit(1);
@@ -90,7 +96,7 @@ int main(int argc,char**argv){
   pthread_mutex_init(&(shmptr->url_lists_lock),&attr);
   pthread_mutex_init(&(shmptr->html_lock),&attr);
   shmptr->url_tail=shmptr->url_head=shmptr->html_head=shmptr->html_tail=0;
-  if(argc>5){
+  if(argc>6){
     ifstream ifs(argv[2]);
     if(!ifs.is_open())
       cerr<<"--------------<master ifstream error/>-----------"<<endl;

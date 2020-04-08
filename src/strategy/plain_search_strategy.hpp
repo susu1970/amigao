@@ -124,8 +124,8 @@ namespace amigao{
 			    size_t i=0,j;
 			    while(weight_str[i]!='|')++i;
 			    while(i<weight_str.size()){
-			      if((j=++i)>=weight_str.size())return;
-			      while(i<weight_str.size()&&weight_str[i]!='_')
+			      j=++i;
+			      while(weight_str[i]!='_')
 				++i;
 			      string tmp_weight=weight_str.substr(j,i-j);
 			      ss<<tmp_weight;
@@ -133,11 +133,12 @@ namespace amigao{
 			      ss>>tmp_int;
 			      ss.clear();
 			      tmp_int*=times;
-			      if((j=++i)==weight_str.size())return;
+			      j=++i;
 			      while(i<weight_str.size()&&weight_str[i]!='|')
 				++i;
 			      string tmp_urlno=weight_str.substr(j,i-j);
-			      urlno_weight[tmp_urlno]+=tmp_int;
+			      if(tmp_urlno!="0")
+				urlno_weight[tmp_urlno]+=tmp_int;
 			    }
 			  };
 	//wordno_times,wordno_weight
@@ -147,18 +148,17 @@ namespace amigao{
       //urlno_vec,urlno_weight;
       if(urlno_weight.empty()){
 	start_page=results_per_page=-1;
-	return;
+	db_op->recycle_db((void*)mysql);return;
       }
       int end=urlno_weight.size()-1;
       int start_sub=(start_page-1)*results_per_page;
-      if(start_sub>end){
-	start_page=results_per_page=-1;
-	return;	
-      }
       int end_sub=start_sub+results_per_page-1;
       if(end_sub>end)end_sub=end;
-      int total_pages=(end+1)/results_per_page;
-      if((end+1)%results_per_page)++total_pages;
+      if(start_sub>end_sub){
+	start_page=results_per_page=-1;
+	db_op->recycle_db((void*)mysql);return;	
+      }
+      int total_pages=(end+1)/results_per_page+((end+1)%results_per_page!=0);
       results_per_page=total_pages;
       string urlno_arr[end+1];
       {
@@ -207,9 +207,8 @@ namespace amigao{
       const string get_url="select url,title,contents,last_update_time from amigao.visited_url where 0>1 ";
       string field_no="";
       vector<string>get_url_vec;
-      for(int i=end-start_sub,j=0;j<=end_sub;++j,--i){
-	if(urlno_arr[i]=="0")continue;
-	cout<<"urlno_arr[i]: "<<urlno_arr[i]<<endl;
+      for(int i=end-start_sub,j=start_sub;j<=end_sub;++j,--i){
+	//	if(urlno_arr[i]=="0")continue;
 	if(tail.size()+2*urlno_arr[i].size()+31>db_op->get_MAX_INSERT()){
 	  string tmp_str=tail+"order by field(no"+field_no+") ";
 	  get_url_vec.push_back(tmp_str);
@@ -223,7 +222,6 @@ namespace amigao{
 	get_url_vec.push_back(tmp_str);
       }
       tail="";field_no="";
-      cout<<"ok"<<endl;
       PlainSearchResult*search_result=(PlainSearchResult*)search_result_;
       for(auto const&e:get_url_vec){
 	if(maria_real_query(mysql,get_url+e)||!(res=mysql_store_result(mysql))){
