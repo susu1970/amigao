@@ -1,0 +1,44 @@
+<html style="background-color:#282A36;">
+    <meta contentType="text/html" charset="utf-8">
+    <head>
+	<title>susu1970</title>
+	<style>
+	 ::-webkit-scrollbar{
+	     width:0px;
+	 }
+	</style>
+	<script>
+	 function redirect_show(ch){
+	     switch(ch){
+		 case 'a':
+		     document.getElementById("show").src="/amigao/index.html";
+		     document.getElementById("show").setAttribute('name','amigao');
+		     break;
+		 default:
+		     break;
+	     }
+	 }
+	 function go(cmd){
+	     if(document.getElementById("show").name=="show"){
+		 
+	     }
+	     else if(document.getElementById("show").name=="amigao"){
+		 document.getElementById("show").src=window.location.href
+						   + "amigao/search?q=" +cmd;
+	     }
+	 }
+	 function amigao_paging(sentence,sp,rp=10){
+	     document.getElementById("show").src=window.location.href
+					       + "amigao/search?q=" +sentence+"&sp="+sp+"&rp="+rp;	     
+	 }
+	</script>
+    </head>
+    <body >
+	<div style="margin-top:0;">
+	    <iframe id="top" src="top.html" style="height:56px;width:100%;" name="top" frameborder="no;"> </iframe>
+	</div>
+	<div style="margin-top:0;">
+	    <iframe id="show" src="susu1970.html" style="height:94%;width:100%;" name="show" frameborder="no;"> </iframe>
+	</div>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<html>
+    <meta contentType="text/html" charset="utf-8">
+    <head>
+	<link rel="stylesheet" type="text/css" href="css/a_link.css">
+	<style>
+	 html,body{
+	     background-color:#282A36;
+	     height:90%;
+	     margin:0;
+	     font-size:large;
+	     color:#FF79C6;
+	 }
+	 .input1{
+	     border:0px;
+	     background-color:gray;
+	     font-size:large;
+	     color:#FF79C6;
+	 }
+	 .input2{
+	     background-color:gray;
+	     font-size:large;
+	     color:#FF79C6;
+	 }
+	 ::-webkit-input-placeholder { /* WebKit browsers */
+	     color:#FF79C6;/*set placeholder's text color*/
+	 }
+	 ::-webkit-scrollbar
+	 {
+	     width:0px;
+	     height:0px;
+	 }
+	 input:focus{
+	     outline:none;
+	 }
+
+	</style>
+	<script>
+	 function click_menubar(ch){
+	     window.parent.redirect_show(ch);
+	 }
+	</script>
+
+    </head>
+    <body>
+	<div style="background-color:#282A36;text-align:center;letter-spacing:5px;white-space:nowrap;" >
+	    <input type="text" style="border-radius:10px;width:100%;height:35px;text-align:center;background-color:gray;background: rgb(0, 0, 0);border:0px;color:#868686;font-size:105%;" name="cmd" id="cmd" onkeydown="if(event.keyCode==13){window.parent.go(document.getElementById('cmd').value);}">　
+	</div><br><br>
+	<div style="margin-top:0px;background-color:#282a36;letter-spacing:5px;text-align:center;">
+	    <a style="text-decoration:none;" title="registe" href="javascript:showAShow('registe.html')"><b>【</b></a>
+	    <a style="text-decoration:none;" title="amigao" href="javascript:" onclick="click_menubar('a')"><b>a</b></a>
+ 	    <a style="text-decoration:none;" title="热度" href="javascript:" onclick="click_menubar('b')"><b>b</b></a>
+	    <a style="text-decoration:none;" title="日期" href="javascript:" onclick="click_menubar('c')"><b>c</b></a>
+	    <a style="text-decoration:none;" title="回复" href="javascript:" onclick="click_menubar('d')"<b>d</b></a>
+	    <a style="text-decoration:none;" title="随机" href="javascript:" onclick="click_menubar('e')"<b>e</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('f')"<b>f</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('g')"<b>g</b></a>
+	    <a style="text-decoration:none;" title="help" href="javascript:" onclick="click_menubar('h')"<b>h</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('i')"<b>i</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('j')"<b>j</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('k')"<b>k</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('l')"<b>l</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('m')"<b>m</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('n')"<b>n</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('o')"<b>o</b></a>
+	    <a style="text-decoration:none;" title="personal" href="javascript:" onclick="click_menubar('p')"<b>p</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('q')"<b>q</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('r')"<b>r</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('s')"<b>s</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('t')"<b>t</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('u')"<b>u</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('v')"<b>v</b></a>
+	    <a style="text-decoration:none;" title="wobbs" href="javascript:" onclick="click_menubar('w')"<b>w</b></a>
+	    <a style="text-decoration:none;" title="保留" href="javascript:" onclick="click_menubar('x')"<b>x</b></a>
+	    <a style="text-decoration:none;" title="发贴"  href="javascript:showAShow('postAPost.jsp');"><b>y</b></a>
+	    <a style="text-decoration:none;" title="个人中心" onclick="showAShow('personalCenter.jsp');" href="javascript:void(0);"><b>z</b></a>
+	    <a style="text-decoration:none;" title="login" href="javascript:showAShow('login.html')"><b>】</b></a>
+	</div>
+    </body>
+</html>

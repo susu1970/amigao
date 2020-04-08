@@ -1,0 +1,22 @@
+ul.paging {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.paging li {display: inline;}
+
+ul.paging li a {
+    color: #4285f4;
+    float: left;
+    padding: 6px 13px;
+    text-decoration: none;
+    transition: background-color .3s;
+    margin: 0 4px;
+}
+
+ul.paging li a.active {
+    color: #1a0dab;
+}
+
+ul.paging li a:hover:not(.active) {background-color: #ddd;}
