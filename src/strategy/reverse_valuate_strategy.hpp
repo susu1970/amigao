@@ -259,7 +259,7 @@ namespace amigao{
 				   amigaoreverse_weight=amigaoreverse_weight+insert_node;
 				   goto after_insert_node;
 				 }
-				 prev=next+1;
+				 prev=++next;
 				 p=prev+1;
 				 while(amigaoreverse_weight[p]!='_')++p;
 				 node_weight=amigaoreverse_weight.substr(prev,p-prev);
