@@ -178,107 +178,112 @@ namespace amigao{
 	//wordno_weight: reverse(no)-> weight(unsigned int)
 	//amigaoreverse_no_weight: reverse(no),weight(string,string)
 	auto update_weight=[&](string&amigaoreverse_weight,const string &amigaoreverse_no)->void{
-			     //first find old url node check it whether changed,and remove it
 			     unsigned int cur_weight=wordno_weight[amigaoreverse_no];
-			     if(!cur_weight)return;
-			     int cur_nums=1;
-			     string cur_weight_str="";
+			     int cur_nums=1;//当前weight列中总节点数
+			     string cur_weight_str="";//当前no行中待更新的weight值
 			     ss<<cur_weight;
 			     ss>>cur_weight_str;
 			     ss.clear();
-			     string insert_node="|"+cur_weight_str+"_"+cur_str_url_no;
-			     int first_node_sub;
+			     if(cur_weight_str.empty()||!(cur_weight_str[0]>'0'&&cur_weight_str[0]<='9'))
+			       return;
+			     int first_node_sub=0;//第一个节点下标
 			     {
-			       int i=0;
-			       while(i<amigaoreverse_weight.size()&&amigaoreverse_weight[i]!='|')++i;
-			       first_node_sub=i;
-			       ss<<(amigaoreverse_weight.substr(0,i));
+			       //获取当前no行中原来的总节点数
+			       while(amigaoreverse_weight[first_node_sub]!='|')++first_node_sub;
+			       string cur_nums_str=amigaoreverse_weight.substr(0,first_node_sub);
+			       ss<<cur_nums_str;
 			       ss>>cur_nums;
 			       ss.clear();
 			     }
+			     //试图查找cur_str_url_no是否存在于weight列中
 			     {
-			       string tmp_str="_"+cur_str_url_no+"|";
-			       int pos=amigaoreverse_weight.find(tmp_str);
+			       string find_url_no="_"+cur_str_url_no+"|";
+			       const int pos=amigaoreverse_weight.find(find_url_no);
 			       if(pos<0){
 				 int i=amigaoreverse_weight.size()-1;
 				 while(amigaoreverse_weight[i]!='_')--i;
-				 if(amigaoreverse_weight.substr(i+1,amigaoreverse_weight.size()).compare(cur_str_url_no)==0)pos=i;
-			       }
-			       if(pos>=0){
-				 if(cur_nums==1){
-				   amigaoreverse_weight="1"+insert_node;return;
-				 }
-				 int i=first_node_sub+1;
-				 while(amigaoreverse_weight[i]!='_')++i;
-				 
-				 --cur_nums;
-				 string tmp_nums="";
-				 ss<<cur_nums;ss>>tmp_nums;ss.clear();
-				 if(i==pos){
-				   while(i<amigaoreverse_weight.size()&&amigaoreverse_weight[i]!='|')++i;
-				   amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(i,amigaoreverse_weight.size());
-				 }else{
-				   int i=pos-1;
+				 if(amigaoreverse_weight.substr(i+1,amigaoreverse_weight.size())==cur_str_url_no){
+				   if(cur_nums==1){
+				     amigaoreverse_weight="1|"+cur_weight_str+"_"+cur_str_url_no;
+				     return;
+				   }//仅有一个节点且相同
+				   //有多个节点，先删除最后那个
+				   --cur_nums;
+				   string cur_nums_str="";
+				   ss<<cur_nums;
+				   ss>>cur_nums_str;
+				   ss.clear();
 				   while(amigaoreverse_weight[i]!='|')--i;
-				   int j=pos+1;
-				   while(j<amigaoreverse_weight.size()&&amigaoreverse_weight[j]!='|')++j;
-				   if(j>=amigaoreverse_weight.size())
-				     amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(first_node_sub,i-first_node_sub);
-				   else
-				     amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(first_node_sub,i-first_node_sub)+amigaoreverse_weight.substr(j,amigaoreverse_weight.size());
+				   amigaoreverse_weight=cur_nums_str+amigaoreverse_weight.substr(first_node_sub,i-first_node_sub);
+				 }
+			       }else{
+				 //当前url_no已经在weight中且不在尾部
+				 int i=first_node_sub;
+				 while(amigaoreverse_weight[i]!='_')++i;
+				 if(i==pos){
+				   //当前节点是头节点
+				   --cur_nums;
+				   string cur_nums_str="";
+				   ss<<cur_nums;
+				   ss>>cur_nums_str;
+				   ss.clear();
+				   while(amigaoreverse_weight[i]!='|')++i;
+				   amigaoreverse_weight=cur_nums_str+amigaoreverse_weight.substr(i,amigaoreverse_weight.size());
+				 }else{
+				   //当前节点是中间节点
+				   --cur_nums;
+				   string cur_nums_str="";
+				   ss<<cur_nums;
+				   ss>>cur_nums_str;
+				   ss.clear();
+				   i=pos;
+				   while(amigaoreverse_weight[i]!='|')--i;
+				   int j=pos;
+				   while(amigaoreverse_weight[j]!='|')++j;
+				   amigaoreverse_weight=cur_nums_str+amigaoreverse_weight.substr(first_node_sub,i-first_node_sub)+amigaoreverse_weight.substr(j,amigaoreverse_weight.size());
 				 }
 			       }
-			     }
-			     int pre=first_node_sub,p=pre+1,next=p+1;
-			     while(next<amigaoreverse_weight.size()&&amigaoreverse_weight[next]!='_')++next;
-			     string node_w=amigaoreverse_weight.substr(p,next-p);
-			     if(cur_weight_str>=node_w){
-			       if(cur_nums>=MAX_URLS){
-				 int i=amigaoreverse_weight.size()-1;
-				 while(amigaoreverse_weight[i]!='|')--i;
-				 amigaoreverse_weight=amigaoreverse_weight.substr(0,first_node_sub)+insert_node+amigaoreverse_weight.substr(first_node_sub,i-first_node_sub);
-				 return;
-			       }
-			       string tmp_nums="";
-			       ++cur_nums;
-			       ss<<cur_nums;ss>>tmp_nums;ss.clear();
-			       amigaoreverse_weight=tmp_nums+insert_node+amigaoreverse_weight.substr(first_node_sub,amigaoreverse_weight.size());
-			       return;
-			     }
-			     while(next<amigaoreverse_weight.size()&&amigaoreverse_weight[next]!='|')++next;
-			     if(next>=amigaoreverse_weight.size()){
-			       string tmp_nums="";
-			       ++cur_nums;
-			       ss<<cur_nums;ss>>tmp_nums;ss.clear();
-			       amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(first_node_sub,amigaoreverse_weight.size())+insert_node;return;
-			     }
-			     while(next<amigaoreverse_weight.size()&&node_w>cur_weight_str){
-			       pre=next;p=next+1;next=p+1;
-			       while(amigaoreverse_weight[next]!='_')++next;
-			       node_w=amigaoreverse_weight.substr(p,next-p);
+			     }//到这里weight中可保证不存在cur_url_str_no
+			     //重新计算first_node_sub
+			     first_node_sub=0;
+			     while(amigaoreverse_weight[first_node_sub]!='|')++first_node_sub;
+			     const string insert_node="|"+cur_weight_str+"_"+cur_str_url_no;
+			     {
+			       //先直接将节点加到合适位置，之后再处理节点数量问题
+			       int prev=first_node_sub+1,p=prev+1,next=p+1;
+			       while(amigaoreverse_weight[p]!='_')++p;
+			       string node_weight=amigaoreverse_weight.substr(prev,p-prev);
 			       while(next<amigaoreverse_weight.size()&&amigaoreverse_weight[next]!='|')++next;
+			       while(node_weight>cur_weight_str){
+				 if(next==amigaoreverse_weight.size()){
+				   amigaoreverse_weight=amigaoreverse_weight+insert_node;
+				   goto after_insert_node;
+				 }
+				 prev=next+1;
+				 p=prev+1;
+				 while(amigaoreverse_weight[p]!='_')++p;
+				 node_weight=amigaoreverse_weight.substr(prev,p-prev);
+				 while(next<amigaoreverse_weight.size()&&amigaoreverse_weight[next]!='|')++next;
+			       }
+			       amigaoreverse_weight=(amigaoreverse_weight.substr(0,prev-2)+insert_node+amigaoreverse_weight.substr(prev-1,amigaoreverse_weight.size()));
 			     }
-			     if(cur_weight_str>=node_w){
-			       if(cur_nums<MAX_URLS){
-				 ++cur_nums;string tmp_nums="";
-				 ss<<cur_nums;ss>>tmp_nums;ss.clear();
-				 amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(first_node_sub,pre-first_node_sub)+insert_node+amigaoreverse_weight.substr(pre,amigaoreverse_weight.size());
-				 return;		 
-			       }
-			       if(next>=amigaoreverse_weight.size()){
-				 amigaoreverse_weight=amigaoreverse_weight.substr(0,pre)+insert_node;return;				 
-			       }
+	after_insert_node:
+			     //处理节点数量问题
+			     if(cur_nums==MAX_URLS){
 			       int i=amigaoreverse_weight.size()-1;
 			       while(amigaoreverse_weight[i]!='|')--i;
-			       amigaoreverse_weight=amigaoreverse_weight.substr(0,pre)+insert_node+amigaoreverse_weight.substr(pre,i-pre);return;
-			     }else{
-			       if(cur_nums<MAX_URLS){
-				 ++cur_nums;string tmp_nums="";
-				 ss<<cur_nums;ss>>tmp_nums;ss.clear();
-				 amigaoreverse_weight=tmp_nums+amigaoreverse_weight.substr(first_node_sub,amigaoreverse_weight.size())+insert_node;
-				 return;
-			       }
+			       amigaoreverse_weight=amigaoreverse_weight.substr(0,i);
 			       return;
+			     }
+			     {//更新节点数量
+			       ++cur_nums;
+			       string cur_nums_str="";
+			       ss<<cur_nums;
+			       ss>>cur_nums_str;
+			       ss.clear();
+			       int i=0;
+			       while(amigaoreverse_weight[i]!='|')++i;
+			       amigaoreverse_weight=cur_nums_str+amigaoreverse_weight.substr(i,amigaoreverse_weight.size());
 			     }
 			   };
 	//update_amigaoreverse_weight(vec)
