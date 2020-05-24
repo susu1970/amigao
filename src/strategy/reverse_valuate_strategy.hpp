@@ -179,6 +179,7 @@ namespace amigao{
 	//amigaoreverse_no_weight: reverse(no),weight(string,string)
 	auto update_weight=[&](string&amigaoreverse_weight,const string &amigaoreverse_no)->void{
 			     unsigned int cur_weight=wordno_weight[amigaoreverse_no];
+			     if(cur_weight==0)return;
 			     int cur_nums=1;//当前weight列中总节点数
 			     string cur_weight_str="";//当前no行中待更新的weight值
 			     ss<<cur_weight;
@@ -188,7 +189,6 @@ namespace amigao{
 			       return;
 			     int first_node_sub=0;//第一个节点下标
 			     const string insert_node="|"+cur_weight_str+"_"+cur_str_url_no;
-						     
 			     {
 			       //获取当前no行中原来的总节点数
 			       while(amigaoreverse_weight[first_node_sub]!='|')++first_node_sub;
@@ -255,7 +255,11 @@ namespace amigao{
 			       while(amigaoreverse_weight[p]!='_')++p;
 			       string node_weight=amigaoreverse_weight.substr(prev,p-prev);
 			       while(next<amigaoreverse_weight.size()&&amigaoreverse_weight[next]!='|')++next;
-			       while(node_weight>cur_weight_str){
+			       unsigned int node_weight_ui;
+			       ss<<node_weight;
+			       ss>>node_weight_ui;
+			       ss.clear();
+			       while(node_weight_ui>cur_weight){
 				 if(next==amigaoreverse_weight.size()){
 				   amigaoreverse_weight=amigaoreverse_weight+insert_node;
 				   goto after_insert_node;
@@ -264,6 +268,9 @@ namespace amigao{
 				 p=prev+1;
 				 while(amigaoreverse_weight[p]!='_')++p;
 				 node_weight=amigaoreverse_weight.substr(prev,p-prev);
+				 ss<<node_weight;
+				 ss>>node_weight_ui;
+				 ss.clear();
 				 while(next<amigaoreverse_weight.size()&&amigaoreverse_weight[next]!='|')++next;
 			       }
 			       amigaoreverse_weight=(amigaoreverse_weight.substr(0,prev-1)+insert_node+amigaoreverse_weight.substr(prev-1,amigaoreverse_weight.size()));
