@@ -187,6 +187,8 @@ namespace amigao{
 			     if(cur_weight_str.empty()||!(cur_weight_str[0]>'0'&&cur_weight_str[0]<='9'))
 			       return;
 			     int first_node_sub=0;//第一个节点下标
+			     const string insert_node="|"+cur_weight_str+"_"+cur_str_url_no;
+						     
 			     {
 			       //获取当前no行中原来的总节点数
 			       while(amigaoreverse_weight[first_node_sub]!='|')++first_node_sub;
@@ -204,7 +206,7 @@ namespace amigao{
 				 while(amigaoreverse_weight[i]!='_')--i;
 				 if(amigaoreverse_weight.substr(i+1,amigaoreverse_weight.size())==cur_str_url_no){
 				   if(cur_nums==1){
-				     amigaoreverse_weight="1|"+cur_weight_str+"_"+cur_str_url_no;
+				     amigaoreverse_weight=("1"+insert_node);
 				     return;
 				   }//仅有一个节点且相同
 				   //有多个节点，先删除最后那个
@@ -228,7 +230,7 @@ namespace amigao{
 				   ss>>cur_nums_str;
 				   ss.clear();
 				   while(amigaoreverse_weight[i]!='|')++i;
-				   amigaoreverse_weight=cur_nums_str+amigaoreverse_weight.substr(i,amigaoreverse_weight.size());
+				   amigaoreverse_weight=(cur_nums_str+amigaoreverse_weight.substr(i,amigaoreverse_weight.size()));
 				 }else{
 				   //当前节点是中间节点
 				   --cur_nums;
@@ -240,14 +242,13 @@ namespace amigao{
 				   while(amigaoreverse_weight[i]!='|')--i;
 				   int j=pos;
 				   while(amigaoreverse_weight[j]!='|')++j;
-				   amigaoreverse_weight=cur_nums_str+amigaoreverse_weight.substr(first_node_sub,i-first_node_sub)+amigaoreverse_weight.substr(j,amigaoreverse_weight.size());
+				   amigaoreverse_weight=(cur_nums_str+amigaoreverse_weight.substr(first_node_sub,i-first_node_sub)+amigaoreverse_weight.substr(j,amigaoreverse_weight.size()));
 				 }
 			       }
 			     }//到这里weight中可保证不存在cur_url_str_no
 			     //重新计算first_node_sub
 			     first_node_sub=0;
 			     while(amigaoreverse_weight[first_node_sub]!='|')++first_node_sub;
-			     const string insert_node="|"+cur_weight_str+"_"+cur_str_url_no;
 			     {
 			       //先直接将节点加到合适位置，之后再处理节点数量问题
 			       int prev=first_node_sub+1,p=prev+1,next=p+1;
@@ -265,7 +266,7 @@ namespace amigao{
 				 node_weight=amigaoreverse_weight.substr(prev,p-prev);
 				 while(next<amigaoreverse_weight.size()&&amigaoreverse_weight[next]!='|')++next;
 			       }
-			       amigaoreverse_weight=(amigaoreverse_weight.substr(0,prev-2)+insert_node+amigaoreverse_weight.substr(prev-1,amigaoreverse_weight.size()));
+			       amigaoreverse_weight=(amigaoreverse_weight.substr(0,prev-1)+insert_node+amigaoreverse_weight.substr(prev-1,amigaoreverse_weight.size()));
 			     }
 	after_insert_node:
 			     //处理节点数量问题
