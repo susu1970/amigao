@@ -18,21 +18,17 @@
 #ifndef AMIGAO_INTERFACE_VALUATE_STRATEGY_H_
 #define AMIGAO_INTERFACE_VALUATE_STRATEGY_H_
 
-#include<string>
+#include <string>
 
-
-namespace amigao{
-  class DBOperationInterface;
-  class ValuateStrategyInterface{
-  public:
-    virtual void handle(std::string &url,
-			std::string &title,
-			std::string &contents,
-			std::string &html,
-			DBOperationInterface*db_op)=0;
-    virtual ~ValuateStrategyInterface(){
-    }
-  };
-}
+namespace amigao {
+class DBOperationInterface;
+class ValuateStrategyInterface {
+public:
+  virtual void handle(std::string &url, std::string &title,
+                      std::string &contents, std::string &html,
+                      DBOperationInterface *db_op) = 0;
+  virtual ~ValuateStrategyInterface() {}
+};
+} // namespace amigao
 
 #endif

@@ -1,8 +1,8 @@
 #ifndef CPPJIEBA_HMMMODEL_H
 #define CPPJIEBA_HMMMODEL_H
 
-#include "limonp/StringUtil.hpp"
 #include "Trie.hpp"
+#include "limonp/StringUtil.hpp"
 
 namespace cppjieba {
 
@@ -14,9 +14,9 @@ struct HMMModel {
    * STATUS:
    * 0: HMMModel::B, 1: HMMModel::E, 2: HMMModel::M, 3:HMMModel::S
    * */
-  enum {B = 0, E = 1, M = 2, S = 3, STATUS_SUM = 4};
+  enum { B = 0, E = 1, M = 2, S = 3, STATUS_SUM = 4 };
 
-  HMMModel(const string& modelPath) {
+  HMMModel(const string &modelPath) {
     memset(startProb, 0, sizeof(startProb));
     memset(transProb, 0, sizeof(transProb));
     statMap[0] = 'B';
@@ -29,57 +29,55 @@ struct HMMModel {
     emitProbVec.push_back(&emitProbS);
     LoadModel(modelPath);
   }
-  ~HMMModel() {
-  }
-  void LoadModel(const string& filePath) {
+  ~HMMModel() {}
+  void LoadModel(const string &filePath) {
     ifstream ifile(filePath.c_str());
     XCHECK(ifile.is_open()) << "open " << filePath << " failed";
     string line;
     vector<string> tmp;
     vector<string> tmp2;
-    //Load startProb
+    // Load startProb
     XCHECK(GetLine(ifile, line));
     Split(line, tmp, " ");
     XCHECK(tmp.size() == STATUS_SUM);
-    for (size_t j = 0; j< tmp.size(); j++) {
+    for (size_t j = 0; j < tmp.size(); j++) {
       startProb[j] = atof(tmp[j].c_str());
     }
 
-    //Load transProb
+    // Load transProb
     for (size_t i = 0; i < STATUS_SUM; i++) {
       XCHECK(GetLine(ifile, line));
       Split(line, tmp, " ");
       XCHECK(tmp.size() == STATUS_SUM);
-      for (size_t j =0; j < STATUS_SUM; j++) {
+      for (size_t j = 0; j < STATUS_SUM; j++) {
         transProb[i][j] = atof(tmp[j].c_str());
       }
     }
 
-    //Load emitProbB
+    // Load emitProbB
     XCHECK(GetLine(ifile, line));
     XCHECK(LoadEmitProb(line, emitProbB));
 
-    //Load emitProbE
+    // Load emitProbE
     XCHECK(GetLine(ifile, line));
     XCHECK(LoadEmitProb(line, emitProbE));
 
-    //Load emitProbM
+    // Load emitProbM
     XCHECK(GetLine(ifile, line));
     XCHECK(LoadEmitProb(line, emitProbM));
 
-    //Load emitProbS
+    // Load emitProbS
     XCHECK(GetLine(ifile, line));
     XCHECK(LoadEmitProb(line, emitProbS));
   }
-  double GetEmitProb(const EmitProbMap* ptMp, Rune key, 
-        double defVal)const {
+  double GetEmitProb(const EmitProbMap *ptMp, Rune key, double defVal) const {
     EmitProbMap::const_iterator cit = ptMp->find(key);
     if (cit == ptMp->end()) {
       return defVal;
     }
     return cit->second;
   }
-  bool GetLine(ifstream& ifile, string& line) {
+  bool GetLine(ifstream &ifile, string &line) {
     while (getline(ifile, line)) {
       Trim(line);
       if (line.empty()) {
@@ -92,7 +90,7 @@ struct HMMModel {
     }
     return false;
   }
-  bool LoadEmitProb(const string& line, EmitProbMap& mp) {
+  bool LoadEmitProb(const string &line, EmitProbMap &mp) {
     if (line.empty()) {
       return false;
     }
@@ -121,7 +119,7 @@ struct HMMModel {
   EmitProbMap emitProbE;
   EmitProbMap emitProbM;
   EmitProbMap emitProbS;
-  vector<EmitProbMap* > emitProbVec;
+  vector<EmitProbMap *> emitProbVec;
 }; // struct HMMModel
 
 } // namespace cppjieba

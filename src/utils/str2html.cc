@@ -1,29 +1,38 @@
-#include<string>
+#include <string>
 
 using namespace std;
 
-string str2html(const string&str){
-  string res="";
-  for(size_t i=0;i<str.size();++i){
-    switch(str[i]){
+string str2html(const string &str) {
+  string res = "";
+  for (size_t i = 0; i < str.size(); ++i) {
+    switch (str[i]) {
     case '`':
-      res+="&acute;";break;
+      res += "&acute;";
+      break;
     case '<':
-      res+="&lt;";break;
+      res += "&lt;";
+      break;
     case '>':
-      res+="&gt;";break;
+      res += "&gt;";
+      break;
     case '&':
-      res+="&amp";break;
+      res += "&amp";
+      break;
     case '"':
-      res+="&quot;";break;
+      res += "&quot;";
+      break;
     case '^':
-      res+="&circ;";break;
+      res += "&circ;";
+      break;
     case '/':
-      res+="&frasl;";break;
+      res += "&frasl;";
+      break;
     case '\'':
-      res+="&apos;";break;
+      res += "&apos;";
+      break;
     default:
-      res+=str[i];break;
+      res += str[i];
+      break;
     }
   }
   return res;

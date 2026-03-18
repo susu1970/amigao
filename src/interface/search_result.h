@@ -18,17 +18,17 @@
 #ifndef AMIGAO_INTERFACE_SEARCH_RESULT_H_
 #define AMIGAO_INTERFACE_SEARCH_RESULT_H_
 
-#include<string>
+#include <string>
 
-namespace amigao{
-  class SearchResultInterface{
-  public:
-    virtual std::string get_url(size_t ith=0)=0;
-    virtual std::string get_title(size_t ith=0)=0;
-    virtual std::string get_contents(size_t ith=0)=0;
-    virtual size_t size()=0;
-    virtual std::string get_html(size_t ith=0)=0;
-    virtual ~SearchResultInterface(){}
-  };
-}
+namespace amigao {
+class SearchResultInterface {
+public:
+  virtual std::string get_url(size_t ith = 0) = 0;
+  virtual std::string get_title(size_t ith = 0) = 0;
+  virtual std::string get_contents(size_t ith = 0) = 0;
+  virtual size_t size() = 0;
+  virtual std::string get_html(size_t ith = 0) = 0;
+  virtual ~SearchResultInterface() {}
+};
+} // namespace amigao
 #endif

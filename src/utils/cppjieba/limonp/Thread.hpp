@@ -6,12 +6,11 @@
 
 namespace limonp {
 
-class IThread: NonCopyable {
- public:
-  IThread(): isStarted(false), isJoined(false) {
-  }
+class IThread : NonCopyable {
+public:
+  IThread() : isStarted(false), isJoined(false) {}
   virtual ~IThread() {
-    if(isStarted && !isJoined) {
+    if (isStarted && !isJoined) {
       XCHECK(!pthread_detach(thread_));
     }
   };
@@ -27,9 +26,10 @@ class IThread: NonCopyable {
     XCHECK(!pthread_join(thread_, NULL));
     isJoined = true;
   }
- private:
-  static void * Worker(void * data) {
-    IThread * ptr = (IThread* ) data;
+
+private:
+  static void *Worker(void *data) {
+    IThread *ptr = (IThread *)data;
     ptr->Run();
     return NULL;
   }

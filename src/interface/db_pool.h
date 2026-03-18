@@ -18,55 +18,49 @@
 #ifndef AMIGAO_INTERFACE_DB_POOL_H_
 #define AMIGAO_INTERFACE_DB_POOL_H_
 
-#include<string>
-#include<pthread.h>
+#include <pthread.h>
+#include <string>
 
-#include"db/db_pool_list.hpp"
-#include"db/db_info.hpp"
+#include "db/db_info.hpp"
+#include "db/db_pool_list.hpp"
 
-namespace amigao{
-  class DBPoolInterface:public DBInfo{
-  protected:
-    DBPoolList*unused_pool=nullptr;
-    DBPoolList*used_pool=nullptr;
-    pthread_mutex_t unused_lock;//to make thread-safety
-    pthread_mutex_t used_lock;
-  public:
-    DBPoolInterface(std::string db_conf_path_):DBInfo(db_conf_path_){
-      unused_pool=new DBPoolList();
-      used_pool=new DBPoolList();
-      pthread_mutex_init(&unused_lock,nullptr);
-      pthread_mutex_init(&used_lock,nullptr);
-    }
-    DBPoolInterface(int MAX_CONN_,int MAX_IDLE_,int MIN_IDLE_,int SLEEP_,
-	   std::string HOST_,std::string USER_,
-	   std::string PASSWD_,std::string DB_NAME_,
-	   std::string UNIX_SOCKET_,
-	   unsigned long CLIENT_FLAG_,
-	   unsigned int PORT_)
-      :DBInfo(MAX_CONN_,MAX_IDLE_,MIN_IDLE_,SLEEP_,
-	      HOST_,USER_,
-	      PASSWD_,DB_NAME_,
-	      UNIX_SOCKET_,
-	      CLIENT_FLAG_,
-	      PORT_){    
-      unused_pool=new DBPoolList();
-      used_pool=new DBPoolList();
-      pthread_mutex_init(&unused_lock,nullptr);
-      pthread_mutex_init(&used_lock,nullptr);
-    }
-    virtual void* get_connection()=0;
-    virtual void recycle_connection(void*)=0;
-    virtual void add_connection(int add_numbers)=0;
-    virtual void delete_connection(int delete_numbers)=0;
-    virtual ~DBPoolInterface(){
-      pthread_mutex_destroy(&unused_lock);
-      pthread_mutex_destroy(&used_lock);
-      delete unused_pool;
-      delete used_pool;
-    }
-  };
-}
+namespace amigao {
+class DBPoolInterface : public DBInfo {
+protected:
+  DBPoolList *unused_pool = nullptr;
+  DBPoolList *used_pool = nullptr;
+  pthread_mutex_t unused_lock; // to make thread-safety
+  pthread_mutex_t used_lock;
 
+public:
+  DBPoolInterface(std::string db_conf_path_) : DBInfo(db_conf_path_) {
+    unused_pool = new DBPoolList();
+    used_pool = new DBPoolList();
+    pthread_mutex_init(&unused_lock, nullptr);
+    pthread_mutex_init(&used_lock, nullptr);
+  }
+  DBPoolInterface(int MAX_CONN_, int MAX_IDLE_, int MIN_IDLE_, int SLEEP_,
+                  std::string HOST_, std::string USER_, std::string PASSWD_,
+                  std::string DB_NAME_, std::string UNIX_SOCKET_,
+                  unsigned long CLIENT_FLAG_, unsigned int PORT_)
+      : DBInfo(MAX_CONN_, MAX_IDLE_, MIN_IDLE_, SLEEP_, HOST_, USER_, PASSWD_,
+               DB_NAME_, UNIX_SOCKET_, CLIENT_FLAG_, PORT_) {
+    unused_pool = new DBPoolList();
+    used_pool = new DBPoolList();
+    pthread_mutex_init(&unused_lock, nullptr);
+    pthread_mutex_init(&used_lock, nullptr);
+  }
+  virtual void *get_connection() = 0;
+  virtual void recycle_connection(void *) = 0;
+  virtual void add_connection(int add_numbers) = 0;
+  virtual void delete_connection(int delete_numbers) = 0;
+  virtual ~DBPoolInterface() {
+    pthread_mutex_destroy(&unused_lock);
+    pthread_mutex_destroy(&used_lock);
+    delete unused_pool;
+    delete used_pool;
+  }
+};
+} // namespace amigao
 
 #endif

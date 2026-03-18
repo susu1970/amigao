@@ -17,10 +17,8 @@
 
 #ifndef AMIGAO_INTERFACE_THREAD_POOL_H_
 #define AMIGAO_INTERFACE_THREAD_POOL_H_
-namespace amigao{
-  class ThreadPoolInterface{
-  
-  };
-}
+namespace amigao {
+class ThreadPoolInterface {};
+} // namespace amigao
 
 #endif

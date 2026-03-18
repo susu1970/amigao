@@ -1,9 +1,9 @@
 #ifndef CPPJIEBA_KEYWORD_EXTRACTOR_H
 #define CPPJIEBA_KEYWORD_EXTRACTOR_H
 
+#include "MixSegment.hpp"
 #include <cmath>
 #include <set>
-#include "MixSegment.hpp"
 
 namespace cppjieba {
 
@@ -12,34 +12,30 @@ using namespace std;
 
 /*utf8*/
 class KeywordExtractor {
- public:
+public:
   struct Word {
     string word;
     vector<size_t> offsets;
     double weight;
   }; // struct Word
 
-  KeywordExtractor(const string& dictPath, 
-        const string& hmmFilePath, 
-        const string& idfPath, 
-        const string& stopWordPath, 
-        const string& userDict = "") 
-    : segment_(dictPath, hmmFilePath, userDict) {
+  KeywordExtractor(const string &dictPath, const string &hmmFilePath,
+                   const string &idfPath, const string &stopWordPath,
+                   const string &userDict = "")
+      : segment_(dictPath, hmmFilePath, userDict) {
     LoadIdfDict(idfPath);
     LoadStopWordDict(stopWordPath);
   }
-  KeywordExtractor(const DictTrie* dictTrie, 
-        const HMMModel* model,
-        const string& idfPath, 
-        const string& stopWordPath) 
-    : segment_(dictTrie, model) {
+  KeywordExtractor(const DictTrie *dictTrie, const HMMModel *model,
+                   const string &idfPath, const string &stopWordPath)
+      : segment_(dictTrie, model) {
     LoadIdfDict(idfPath);
     LoadStopWordDict(stopWordPath);
   }
-  ~KeywordExtractor() {
-  }
+  ~KeywordExtractor() {}
 
-  void Extract(const string& sentence, vector<string>& keywords, size_t topN) const {
+  void Extract(const string &sentence, vector<string> &keywords,
+               size_t topN) const {
     vector<Word> topWords;
     Extract(sentence, topWords, topN);
     for (size_t i = 0; i < topWords.size(); i++) {
@@ -47,15 +43,18 @@ class KeywordExtractor {
     }
   }
 
-  void Extract(const string& sentence, vector<pair<string, double> >& keywords, size_t topN) const {
+  void Extract(const string &sentence, vector<pair<string, double>> &keywords,
+               size_t topN) const {
     vector<Word> topWords;
     Extract(sentence, topWords, topN);
     for (size_t i = 0; i < topWords.size(); i++) {
-      keywords.push_back(pair<string, double>(topWords[i].word, topWords[i].weight));
+      keywords.push_back(
+          pair<string, double>(topWords[i].word, topWords[i].weight));
     }
   }
 
-  void Extract(const string& sentence, vector<Word>& keywords, size_t topN) const {
+  void Extract(const string &sentence, vector<Word> &keywords,
+               size_t topN) const {
     vector<string> words;
     segment_.Cut(sentence, words);
 
@@ -64,7 +63,8 @@ class KeywordExtractor {
     for (size_t i = 0; i < words.size(); ++i) {
       size_t t = offset;
       offset += words[i].size();
-      if (IsSingleWord(words[i]) || stopWords_.find(words[i]) != stopWords_.end()) {
+      if (IsSingleWord(words[i]) ||
+          stopWords_.find(words[i]) != stopWords_.end()) {
         continue;
       }
       wordmap[words[i]].offsets.push_back(t);
@@ -77,8 +77,10 @@ class KeywordExtractor {
 
     keywords.clear();
     keywords.reserve(wordmap.size());
-    for (map<string, Word>::iterator itr = wordmap.begin(); itr != wordmap.end(); ++itr) {
-      unordered_map<string, double>::const_iterator cit = idfMap_.find(itr->first);
+    for (map<string, Word>::iterator itr = wordmap.begin();
+         itr != wordmap.end(); ++itr) {
+      unordered_map<string, double>::const_iterator cit =
+          idfMap_.find(itr->first);
       if (cit != idfMap_.end()) {
         itr->second.weight *= cit->second;
       } else {
@@ -88,14 +90,16 @@ class KeywordExtractor {
       keywords.push_back(itr->second);
     }
     topN = min(topN, keywords.size());
-    partial_sort(keywords.begin(), keywords.begin() + topN, keywords.end(), Compare);
+    partial_sort(keywords.begin(), keywords.begin() + topN, keywords.end(),
+                 Compare);
     keywords.resize(topN);
   }
- private:
-  void LoadIdfDict(const string& idfPath) {
+
+private:
+  void LoadIdfDict(const string &idfPath) {
     ifstream ifs(idfPath.c_str());
     XCHECK(ifs.is_open()) << "open " << idfPath << " failed";
-    string line ;
+    string line;
     vector<string> buf;
     double idf = 0.0;
     double idfSum = 0.0;
@@ -108,30 +112,30 @@ class KeywordExtractor {
       }
       Split(line, buf, " ");
       if (buf.size() != 2) {
-        XLOG(ERROR) << "line: " << line << ", lineno: " << lineno << " empty. skipped.";
+        XLOG(ERROR) << "line: " << line << ", lineno: " << lineno
+                    << " empty. skipped.";
         continue;
       }
       idf = atof(buf[1].c_str());
       idfMap_[buf[0]] = idf;
       idfSum += idf;
-
     }
 
     assert(lineno);
     idfAverage_ = idfSum / lineno;
     assert(idfAverage_ > 0.0);
   }
-  void LoadStopWordDict(const string& filePath) {
+  void LoadStopWordDict(const string &filePath) {
     ifstream ifs(filePath.c_str());
     XCHECK(ifs.is_open()) << "open " << filePath << " failed";
-    string line ;
+    string line;
     while (getline(ifs, line)) {
       stopWords_.insert(line);
     }
     assert(stopWords_.size());
   }
 
-  static bool Compare(const Word& lhs, const Word& rhs) {
+  static bool Compare(const Word &lhs, const Word &rhs) {
     return lhs.weight > rhs.weight;
   }
 
@@ -142,12 +146,12 @@ class KeywordExtractor {
   unordered_set<string> stopWords_;
 }; // class KeywordExtractor
 
-inline ostream& operator << (ostream& os, const KeywordExtractor::Word& word) {
-  return os << "{\"word\": \"" << word.word << "\", \"offset\": " << word.offsets << ", \"weight\": " << word.weight << "}"; 
+inline ostream &operator<<(ostream &os, const KeywordExtractor::Word &word) {
+  return os << "{\"word\": \"" << word.word
+            << "\", \"offset\": " << word.offsets
+            << ", \"weight\": " << word.weight << "}";
 }
 
 } // namespace cppjieba
 
 #endif
-
-

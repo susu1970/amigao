@@ -18,15 +18,16 @@
 #ifndef AMIGAO_INTERFACE_SEARCH_STRATEGY_H_
 #define AMIGAO_INTERFACE_SEARCH_STRATEGY_H_
 
-#include<string>
+#include <string>
 
-namespace amigao{
-  class DBOperationInterface;
-  class SearchStrategyInterface{
-  public:
-    virtual void handle(std::string &search_sentence,void*result_,DBOperationInterface*,short& start_page,short& results_per_page,bool use_stop_word=true)=0;
-    virtual ~SearchStrategyInterface(){
-    }
-  };
-}
+namespace amigao {
+class DBOperationInterface;
+class SearchStrategyInterface {
+public:
+  virtual void handle(std::string &search_sentence, void *result_,
+                      DBOperationInterface *, short &start_page,
+                      short &results_per_page, bool use_stop_word = true) = 0;
+  virtual ~SearchStrategyInterface() {}
+};
+} // namespace amigao
 #endif

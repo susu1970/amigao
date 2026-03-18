@@ -15,24 +15,22 @@
 // Author: 758293230@qq.com
 //
 
-#include"values.h"
+#include "values.h"
 
-#include<unistd.h>
-#include<pthread.h>
+#include <pthread.h>
+#include <unistd.h>
 
 using namespace std;
 
-static void*work(void*arg){
-  while(true){
-    
+static void *work(void *arg) {
+  while (true) {
   }
 }
 
-int main(int argc,char**argv){
-  auto WORKERS=sysconf(_SC_NPROCESSORS_CONF);
-  for(auto i=WORKERS;i>0;--i){
-    
+int main(int argc, char **argv) {
+  auto WORKERS = sysconf(_SC_NPROCESSORS_CONF);
+  for (auto i = WORKERS; i > 0; --i) {
   }
-  while(true)
+  while (true)
     pause();
 }

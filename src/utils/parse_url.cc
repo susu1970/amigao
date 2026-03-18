@@ -15,24 +15,25 @@
 // Author: 758293230@qq.com
 //
 
-#include<string>
+#include <string>
 
 using namespace std;
 
-extern void format_url(string&);
+extern void format_url(string &);
 
 /*
   split given url,get host url address and page path on that host
  */
-void parse_url(string url,string&host_url,string&page_path){
-  host_url="";
-  page_path="/";
+void parse_url(string url, string &host_url, string &page_path) {
+  host_url = "";
+  page_path = "/";
   format_url(url);
-  if(url.empty())
+  if (url.empty())
     return;
-  size_t i=0;//work subscript
-  for(;i<url.size()&&url[i]!='/';++i);
-  host_url=url.substr(0,i);
-  if(i<url.size())
-    page_path=url.substr(i,url.size());
+  size_t i = 0; // work subscript
+  for (; i < url.size() && url[i] != '/'; ++i)
+    ;
+  host_url = url.substr(0, i);
+  if (i < url.size())
+    page_path = url.substr(i, url.size());
 }

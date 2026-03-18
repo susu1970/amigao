@@ -15,27 +15,32 @@
 // Author: 758293230@qq.com
 //
 
-#include"spider/shmctrl.h"
+#include "spider/shmctrl.h"
 
-#include<signal.h>
-#include<syslog.h>
-#include<cstring>
-#include<string>
-#include<pthread.h>
-#include<sys/shm.h>
-#include<iostream>
-#include<fstream>
+#include <cstring>
+#include <fstream>
+#include <iostream>
+#include <pthread.h>
+#include <signal.h>
+#include <string>
+#include <sys/shm.h>
+#include <syslog.h>
 
 using namespace std;
 
 static int shmid;
-static shmctrl*shmptr;
+static shmctrl *shmptr;
 
 static void at_exit();
-static void sig_alrm(int){}
+static void sig_alrm(int) {}
 
-void print_shmctrl(){
-  cout<<"-------<shmctrl info>--------\nURL_SIZE: "<<URL_SIZE<<"\nURL_NUMS: "<<URL_NUMS<<"\nHTML_SIZE: "<<HTML_SIZE<<"\nHTML_NUMS: "<<HTML_NUMS<<"\nurl_head: "<<shmptr->url_head<<"\nurl_tail: "<<shmptr->url_tail<<"\nhtml_head: "<<shmptr->html_head<<"\nhtml_tail:"<<shmptr->html_tail<<"\n";
+void print_shmctrl() {
+  cout << "-------<shmctrl info>--------\nURL_SIZE: " << URL_SIZE
+       << "\nURL_NUMS: " << URL_NUMS << "\nHTML_SIZE: " << HTML_SIZE
+       << "\nHTML_NUMS: " << HTML_NUMS << "\nurl_head: " << shmptr->url_head
+       << "\nurl_tail: " << shmptr->url_tail
+       << "\nhtml_head: " << shmptr->html_head
+       << "\nhtml_tail:" << shmptr->html_tail << "\n";
   /*
   if(pthread_mutex_trylock(&(shmptr->url_lock))){
     cout<<"url_lock: locked"<<endl;
@@ -50,32 +55,32 @@ void print_shmctrl(){
     cout<<"html_lock: unlocked"<<endl;
   }
   */
-  cout<<"---------</shmctrl info>---------"<<endl;
+  cout << "---------</shmctrl info>---------" << endl;
 }
 
-int main(int argc,char**argv){
+int main(int argc, char **argv) {
   atexit(at_exit);
-  key_t shmkey=ftok("./master",0);
-  if((shmid=shmget(shmkey,0,0777))<0)
-    cerr<<"---<monitor shmget error/>---"<<endl,exit(1);
-  if((shmptr=(shmctrl*)shmat(shmid,0,0))==(shmctrl*)-1)
-    cerr<<"---<monitor shmat error/>---"<<endl,exit(1);
-  if(signal(SIGALRM,sig_alrm)==SIG_ERR)
-    cerr<<"---<monitor signal error/>---"<<endl,exit(1);
-  if(signal(SIGCONT,SIG_DFL)==SIG_ERR)
-    cerr<<"---<monitor signal error/>---"<<endl,exit(1);
-  cout<<"---<monitor pid>---"<<endl;
-  cout<<getpid()<<endl;
-  cout<<"---</monitor pid>---"<<endl;
-  while(true){
+  key_t shmkey = ftok("./master", 0);
+  if ((shmid = shmget(shmkey, 0, 0777)) < 0)
+    cerr << "---<monitor shmget error/>---" << endl, exit(1);
+  if ((shmptr = (shmctrl *)shmat(shmid, 0, 0)) == (shmctrl *)-1)
+    cerr << "---<monitor shmat error/>---" << endl, exit(1);
+  if (signal(SIGALRM, sig_alrm) == SIG_ERR)
+    cerr << "---<monitor signal error/>---" << endl, exit(1);
+  if (signal(SIGCONT, SIG_DFL) == SIG_ERR)
+    cerr << "---<monitor signal error/>---" << endl, exit(1);
+  cout << "---<monitor pid>---" << endl;
+  cout << getpid() << endl;
+  cout << "---</monitor pid>---" << endl;
+  while (true) {
     alarm(3);
     print_shmctrl();
     pause();
   }
   exit(0);
 }
-void at_exit(){
-  cout<<"---<monitor exiting.../>---"<<endl;
-  if(!shmdt((void*)shmptr))
-    cerr<<"---<monitor shmdt error/>---"<<endl;
+void at_exit() {
+  cout << "---<monitor exiting.../>---" << endl;
+  if (!shmdt((void *)shmptr))
+    cerr << "---<monitor shmdt error/>---" << endl;
 }

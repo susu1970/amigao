@@ -1,10 +1,10 @@
 #ifndef CPPJIEBA_TRIE_HPP
 #define CPPJIEBA_TRIE_HPP
 
-#include <vector>
-#include <queue>
-#include "limonp/StdExtension.hpp"
 #include "Unicode.hpp"
+#include "limonp/StdExtension.hpp"
+#include <queue>
+#include <vector>
 
 namespace cppjieba {
 
@@ -22,48 +22,48 @@ struct DictUnit {
 // inline ostream & operator << (ostream& os, const DictUnit& unit) {
 //   string s;
 //   s << unit.word;
-//   return os << StringFormat("%s %s %.3lf", s.c_str(), unit.tag.c_str(), unit.weight);
+//   return os << StringFormat("%s %s %.3lf", s.c_str(), unit.tag.c_str(),
+//   unit.weight);
 // }
 
 struct Dag {
   RuneStr runestr;
   // [offset, nexts.first]
-  limonp::LocalVector<pair<size_t, const DictUnit*> > nexts;
-  const DictUnit * pInfo;
+  limonp::LocalVector<pair<size_t, const DictUnit *>> nexts;
+  const DictUnit *pInfo;
   double weight;
   size_t nextPos; // TODO
-  Dag():runestr(), pInfo(NULL), weight(0.0), nextPos(0) {
-  }
+  Dag() : runestr(), pInfo(NULL), weight(0.0), nextPos(0) {}
 }; // struct Dag
 
 typedef Rune TrieKey;
 
 class TrieNode {
- public :
-  TrieNode(): next(NULL), ptValue(NULL) {
-  }
- public:
-  typedef unordered_map<TrieKey, TrieNode*> NextMap;
+public:
+  TrieNode() : next(NULL), ptValue(NULL) {}
+
+public:
+  typedef unordered_map<TrieKey, TrieNode *> NextMap;
   NextMap *next;
   const DictUnit *ptValue;
 };
 
 class Trie {
- public:
-  Trie(const vector<Unicode>& keys, const vector<const DictUnit*>& valuePointers)
-   : root_(new TrieNode) {
+public:
+  Trie(const vector<Unicode> &keys,
+       const vector<const DictUnit *> &valuePointers)
+      : root_(new TrieNode) {
     CreateTrie(keys, valuePointers);
   }
-  ~Trie() {
-    DeleteNode(root_);
-  }
+  ~Trie() { DeleteNode(root_); }
 
-  const DictUnit* Find(RuneStrArray::const_iterator begin, RuneStrArray::const_iterator end) const {
+  const DictUnit *Find(RuneStrArray::const_iterator begin,
+                       RuneStrArray::const_iterator end) const {
     if (begin == end) {
       return NULL;
     }
 
-    const TrieNode* ptNode = root_;
+    const TrieNode *ptNode = root_;
     TrieNode::NextMap::const_iterator citer;
     for (RuneStrArray::const_iterator it = begin; it != end; it++) {
       if (NULL == ptNode->next) {
@@ -78,10 +78,9 @@ class Trie {
     return ptNode->ptValue;
   }
 
-  void Find(RuneStrArray::const_iterator begin, 
-        RuneStrArray::const_iterator end, 
-        vector<struct Dag>&res, 
-        size_t max_word_len = MAX_WORD_LENGTH) const {
+  void Find(RuneStrArray::const_iterator begin,
+            RuneStrArray::const_iterator end, vector<struct Dag> &res,
+            size_t max_word_len = MAX_WORD_LENGTH) const {
     assert(root_ != NULL);
     res.resize(end - begin);
 
@@ -90,18 +89,23 @@ class Trie {
     for (size_t i = 0; i < size_t(end - begin); i++) {
       res[i].runestr = *(begin + i);
 
-      if (root_->next != NULL && root_->next->end() != (citer = root_->next->find(res[i].runestr.rune))) {
+      if (root_->next != NULL &&
+          root_->next->end() !=
+              (citer = root_->next->find(res[i].runestr.rune))) {
         ptNode = citer->second;
       } else {
         ptNode = NULL;
       }
       if (ptNode != NULL) {
-        res[i].nexts.push_back(pair<size_t, const DictUnit*>(i, ptNode->ptValue));
+        res[i].nexts.push_back(
+            pair<size_t, const DictUnit *>(i, ptNode->ptValue));
       } else {
-        res[i].nexts.push_back(pair<size_t, const DictUnit*>(i, static_cast<const DictUnit*>(NULL)));
+        res[i].nexts.push_back(pair<size_t, const DictUnit *>(
+            i, static_cast<const DictUnit *>(NULL)));
       }
 
-      for (size_t j = i + 1; j < size_t(end - begin) && (j - i + 1) <= max_word_len; j++) {
+      for (size_t j = i + 1;
+           j < size_t(end - begin) && (j - i + 1) <= max_word_len; j++) {
         if (ptNode == NULL || ptNode->next == NULL) {
           break;
         }
@@ -111,20 +115,22 @@ class Trie {
         }
         ptNode = citer->second;
         if (NULL != ptNode->ptValue) {
-          res[i].nexts.push_back(pair<size_t, const DictUnit*>(j, ptNode->ptValue));
+          res[i].nexts.push_back(
+              pair<size_t, const DictUnit *>(j, ptNode->ptValue));
         }
       }
     }
   }
 
-  void InsertNode(const Unicode& key, const DictUnit* ptValue) {
+  void InsertNode(const Unicode &key, const DictUnit *ptValue) {
     if (key.begin() == key.end()) {
       return;
     }
 
     TrieNode::NextMap::const_iterator kmIter;
     TrieNode *ptNode = root_;
-    for (Unicode::const_iterator citer = key.begin(); citer != key.end(); ++citer) {
+    for (Unicode::const_iterator citer = key.begin(); citer != key.end();
+         ++citer) {
       if (NULL == ptNode->next) {
         ptNode->next = new TrieNode::NextMap;
       }
@@ -142,8 +148,9 @@ class Trie {
     ptNode->ptValue = ptValue;
   }
 
- private:
-  void CreateTrie(const vector<Unicode>& keys, const vector<const DictUnit*>& valuePointers) {
+private:
+  void CreateTrie(const vector<Unicode> &keys,
+                  const vector<const DictUnit *> &valuePointers) {
     if (valuePointers.empty() || keys.empty()) {
       return;
     }
@@ -154,12 +161,13 @@ class Trie {
     }
   }
 
-  void DeleteNode(TrieNode* node) {
+  void DeleteNode(TrieNode *node) {
     if (NULL == node) {
       return;
     }
     if (NULL != node->next) {
-      for (TrieNode::NextMap::iterator it = node->next->begin(); it != node->next->end(); ++it) {
+      for (TrieNode::NextMap::iterator it = node->next->begin();
+           it != node->next->end(); ++it) {
         DeleteNode(it->second);
       }
       delete node->next;
@@ -167,7 +175,7 @@ class Trie {
     delete node;
   }
 
-  TrieNode* root_;
+  TrieNode *root_;
 }; // class Trie
 } // namespace cppjieba
 
